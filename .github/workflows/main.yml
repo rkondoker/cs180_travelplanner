@@ -1,0 +1,24 @@
+name: Travel Planner
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  format:
+    name: Format Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Prettier check
+        run: npx prettier . --check
+
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run ESLint
+        run: npx eslint .
