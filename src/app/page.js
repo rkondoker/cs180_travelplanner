@@ -7,6 +7,6 @@ const Home = () => {
       <Example />
     </div>
   );
-}
+};
 
 export default Home;
