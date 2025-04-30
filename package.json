@@ -3,23 +3,33 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"nodemon server/index.js\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "npx prettier . --write"
   },
   "dependencies": {
-    "next": "15.3.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "next": "15.3.1",
+    "pg": "^8.15.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "concurrently": "^9.1.2",
     "eslint": "^9",
-    "eslint-config-next": "15.3.0",
+    "eslint-config-next": "15.3.1",
+    "nodemon": "^3.1.10",
     "prettier": "3.5.3",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
