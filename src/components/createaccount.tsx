@@ -1,6 +1,6 @@
 const Login = () => {
   return (
-    <div className="min-h-screen bg-trip-blue-200 flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="bg-trip-brown-200 p-8 rounded-xl w-125 shadow-lg font-trip-main">
         <h2 className="text-white text-3xl font-bold font-trip-main mb-6 border-b border-white pb-2">
           Create Account
@@ -10,14 +10,6 @@ const Login = () => {
           <label className="block text-white text-sm mb-1">Username</label>
           <input
             type="text"
-            className="w-full px-3 py-2 rounded bg-white text-black"
-          />
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-white text-sm mb-1">Password</label>
-          <input
-            type="password"
             className="w-full px-3 py-2 rounded bg-white text-black"
           />
         </div>
