@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 const Login = () => {
   return (
-    <div className="min-h-screen bg-trip-blue-200 flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="bg-trip-brown-200 p-8 rounded-xl w-125 shadow-lg font-trip-main">
         <h2 className="text-white text-3xl font-bold font-trip-main mb-6 border-b border-white pb-2">
           Log in
