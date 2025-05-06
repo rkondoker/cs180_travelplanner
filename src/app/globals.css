@@ -13,6 +13,6 @@
 
 body {
   font-family: var(--font-trip-main);
-  background-color: var(--color-trip-blue-200);
+  /* background-color: var(--color-trip-blue-200); */
   color: var(--color-trip-brown-100);
 }
