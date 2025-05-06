@@ -1,15 +1,17 @@
 import Example from "@/components/example";
 import LogIn from "@/components/login";
 import Link from "next/link";
+import TopBar from "@/components/TopBar";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <TopBar />
       {/* Hero Section */}
       <div className="relative h-screen flex items-center justify-center">
         <div className="text-center z-10">
           <h1 className="text-6xl font-bold text-white mb-6">
-            Welcome to Travel Planner
+            Welcome to TripWise
           </h1>
           <p className="text-xl text-white mb-8">
             Plan your perfect journey with ease
