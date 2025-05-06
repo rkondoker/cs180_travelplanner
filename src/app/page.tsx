@@ -17,9 +17,11 @@ export default function Home() {
             Plan your perfect journey with ease
           </p>
           <div className="space-x-4">
-            <button className="bg-trip-brown-100 text-trip-brown-200 px-8 py-3 rounded-full font-semibold hover:bg-[#cbb192] transition">
-              Explore
-            </button>
+            <Link href="/explore">
+              <button className="bg-trip-brown-100 text-trip-brown-200 px-8 py-3 rounded-full font-semibold hover:bg-[#cbb192] transition">
+                Explore
+              </button>
+            </Link>
             <button className="bg-transparent border-2 border-trip-brown-100 text-trip-brown-100 px-8 py-3 rounded-full font-semibold hover:bg-trip-brown-100 hover:text-trip-brown-200 transition">
               Learn More
             </button>
