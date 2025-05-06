@@ -8,17 +8,21 @@ export default function ExplorePage() {
   const isGoogleMapsLoaded = useGoogleMaps();
 
   useEffect(() => {
-    if (!isGoogleMapsLoaded) return;
+    if (!isGoogleMapsLoaded || !window.google?.maps) return;
 
     const mapElement = document.getElementById("map");
     if (!mapElement) return;
 
-    const newMap = new google.maps.Map(mapElement, {
-      center: { lat: 0, lng: 0 },
-      zoom: 2,
-    });
+    try {
+      const newMap = new window.google.maps.Map(mapElement, {
+        center: { lat: 0, lng: 0 },
+        zoom: 2,
+      });
 
-    setMap(newMap);
+      setMap(newMap);
+    } catch (error) {
+      console.error("Error initializing map:", error);
+    }
   }, [isGoogleMapsLoaded]);
 
   return (

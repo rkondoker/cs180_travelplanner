@@ -5,6 +5,10 @@ const backgroundImages = [
   "/images/travel1.jpg",
   "/images/travel2.jpg",
   "/images/travel3.jpg",
+  "/images/travel4.jpg",
+  "/images/travel5.jpg",
+  "/images/travel6.jpg",
+  "/images/travel7.jpg",
 ];
 
 export default function BackgroundImage() {

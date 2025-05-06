@@ -1,7 +1,10 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function TopBar() {
+  const pathname = usePathname();
+
   return (
     <div className="fixed top-0 left-0 right-0 bg-trip-blue-200 bg-opacity-90 backdrop-blur-sm z-50">
       <div className="container mx-auto px-4">
@@ -13,10 +16,24 @@ export default function TopBar() {
 
           {/* Navigation Links */}
           <div className="flex items-center space-x-6">
-            <Link href="/" className="text-trip-brown-100 hover:text-trip-brown-200 transition">
-              Home
+            <Link
+              href="/explore"
+              className={`px-4 py-2 rounded-md transition-colors ${
+                pathname === "/explore"
+                  ? "bg-blue-500 text-white"
+                  : "text-trip-brown-100 hover:text-trip-brown-200"
+              }`}
+            >
+              Explore
             </Link>
-            <Link href="/about" className="text-trip-brown-100 hover:text-trip-brown-200 transition">
+            <Link
+              href="/about"
+              className={`px-4 py-2 rounded-md transition-colors ${
+                pathname === "/about"
+                  ? "bg-blue-500 text-white"
+                  : "text-trip-brown-100 hover:text-trip-brown-200"
+              }`}
+            >
               About
             </Link>
             <Link href="/contact" className="text-trip-brown-100 hover:text-trip-brown-200 transition">

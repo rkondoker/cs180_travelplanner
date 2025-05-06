@@ -12,7 +12,7 @@ export const useGoogleMaps = () => {
 
   useEffect(() => {
     // Check if script is already loaded
-    if (window.google) {
+    if (window.google?.maps) {
       setIsLoaded(true);
       return;
     }
@@ -20,8 +20,15 @@ export const useGoogleMaps = () => {
     // Check if script is already in the document
     const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
     if (existingScript) {
-      setIsLoaded(true);
-      return;
+      // If script exists but not loaded yet, wait for it
+      const checkGoogleMaps = setInterval(() => {
+        if (window.google?.maps) {
+          setIsLoaded(true);
+          clearInterval(checkGoogleMaps);
+        }
+      }, 100);
+
+      return () => clearInterval(checkGoogleMaps);
     }
 
     // Load the script
@@ -29,7 +36,18 @@ export const useGoogleMaps = () => {
     script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`;
     script.async = true;
     script.defer = true;
-    script.onload = () => setIsLoaded(true);
+    
+    // Add load event listener
+    script.onload = () => {
+      // Wait for google.maps to be available
+      const checkGoogleMaps = setInterval(() => {
+        if (window.google?.maps) {
+          setIsLoaded(true);
+          clearInterval(checkGoogleMaps);
+        }
+      }, 100);
+    };
+
     document.head.appendChild(script);
 
     return () => {
