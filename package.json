@@ -17,7 +17,8 @@
     "next": "15.3.1",
     "pg": "^8.15.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
