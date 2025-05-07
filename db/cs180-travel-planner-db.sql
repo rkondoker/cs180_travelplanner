@@ -174,37 +174,6 @@ ALTER TABLE ONLY public.trips ALTER COLUMN trip_id SET DEFAULT nextval('public.t
 
 ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_user_id_seq'::regclass);
 
-
---
--- TOC entry 4918 (class 0 OID 65785)
--- Dependencies: 222
--- Data for Name: activities; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.activities (activity_id, trip_id, name, location, category, start_date, end_date, date_created) FROM stdin;
-\.
-
-
---
--- TOC entry 4916 (class 0 OID 65770)
--- Dependencies: 220
--- Data for Name: trips; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.trips (trip_id, user_id, title, start_date, end_date, date_created) FROM stdin;
-\.
-
-
---
--- TOC entry 4914 (class 0 OID 65758)
--- Dependencies: 218
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.users (user_id, email, first_name, last_name, password, joined_on) FROM stdin;
-\.
-
-
 --
 -- TOC entry 4927 (class 0 OID 0)
 -- Dependencies: 221
