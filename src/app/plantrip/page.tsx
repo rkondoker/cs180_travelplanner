@@ -1,5 +1,4 @@
-"use client";
-import TripPlanner from "@/components/TripPlanner";
+import TripPlanner from "@/components/tripplanner";
 
 const PlanTripPage = () => {
   return (
