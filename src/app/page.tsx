@@ -1,11 +1,9 @@
-import Example from "@/components/example";
-import LogIn from "@/components/login";
+import LandingPage from "@/components/landingpage";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Example />
-      <LogIn />
+    <div>
+      <LandingPage />
     </div>
   );
 };
