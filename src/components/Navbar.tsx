@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 const Navbar = () => {
@@ -16,13 +14,13 @@ const Navbar = () => {
         </div>
         <div className="flex space-x-6">
           <Link
-            href="/trip-planner"
+            href="/plantrip"
             className="text-amber-100 text-lg hover:text-gray-300"
           >
             Trip Planner
           </Link>
           <Link
-            href="/my-trips"
+            href="/mytrips"
             className="text-amber-100 text-lg hover:text-gray-300"
           >
             My Trips
