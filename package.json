@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "prepare": "husky"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -28,6 +29,7 @@
     "concurrently": "^9.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "husky": "^9.1.7",
     "nodemon": "^3.1.10",
     "prettier": "3.5.3",
     "tailwindcss": "^4",
