@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyAX7wp7T42Cu3wqCX-yzp-nI5Y3oyAnv1A";
 const HAWAII_COORDS = { lat: 19.5429, lng: -155.6659 };
 
 const GoogleMap: React.FC = () => {
