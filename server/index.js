@@ -43,20 +43,16 @@ app.post("/login", async (req, res) => {
     ]);
 
     if (user.rows.length === 0) {
-      return res
-        .status(400)
-        .json({
-          message: "The email or password is incorrect, please try again.",
-        });
+      return res.status(400).json({
+        message: "The email or password is incorrect, please try again.",
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user.rows[0].password);
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({
-          message: "The email or password is incorrect, please try again.",
-        });
+      return res.status(400).json({
+        message: "The email or password is incorrect, please try again.",
+      });
     }
 
     const { first_name, last_name, joined_on } = user.rows[0];
