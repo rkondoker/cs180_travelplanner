@@ -29,8 +29,8 @@ export const handleTripCreation = async (formData: TripFormData) => {
       title: tripName,
       startDate,
       endDate,
-      activities: activities?.split(",").map(activity => activity.trim()),
-      destination
+      activities: activities?.split(",").map((activity) => activity.trim()),
+      destination,
     }),
   });
 
@@ -39,4 +39,4 @@ export const handleTripCreation = async (formData: TripFormData) => {
   }
 
   return await response.json();
-}; 
+};

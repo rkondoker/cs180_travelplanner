@@ -95,9 +95,9 @@ const TripPlanner = () => {
     </div>
   );
 };
-  export default TripPlanner;
+export default TripPlanner;
 
-  /*
+/*
 
   /*
   return (
