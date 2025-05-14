@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
+//Russell added changes
+import { useRouter } from "next/navigation";
+import { TripFormData, handleTripCreation } from "@/utils/trips/handleTrips";
 
+/*
 const TripPlanner = () => {
   const [formData, setFormData] = useState({
     destination: "",
@@ -9,6 +13,36 @@ const TripPlanner = () => {
     activities: "",
     tripName: "",
   });
+*/
+const TripPlanner = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState<TripFormData>({});
+  const [error, setError] = useState<string | null>(null);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await handleTripCreation(formData);
+      setError(null);
+      localStorage.setItem("response", JSON.stringify(response));
+      router.push("/account");
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred");
+      }
+    }
+  };
 
   const fields = [
     { label: "Destination", type: "text", name: "destination" },
