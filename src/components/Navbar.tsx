@@ -16,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className="flex space-x-6">
           <Link
-            href="/trip-planner"
+            href="/plantrip"
             className="text-amber-100 text-lg hover:text-gray-300"
           >
             Trip Planner
