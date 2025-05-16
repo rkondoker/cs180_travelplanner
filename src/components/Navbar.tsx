@@ -28,9 +28,6 @@ const Navbar = () => {
             My Trips
           </Link>
         </div>
-
-        {/*<h1>Sample Navigation Bar to Upload to Homepage once devloped
-            </h1>*/}
       </div>
     </nav>
   );
