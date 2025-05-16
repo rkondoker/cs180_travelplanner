@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors";
+import cors from "cors"
 import pool from "./db.js";
 import bcrypt from "bcrypt";
 
@@ -33,40 +33,79 @@ app.get("/", (req, res) => {
   messages.push(newMessage);
   res.send("Message added");
 });
-
-// Login route
-app.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+/*
+app.post("/trips", async (req, res) => {
+  const { userId, title, startDate, endDate, activities, destination } = req.body;
   try {
-    const user = await pool.query("SELECT * FROM users WHERE email = $1", [
-      email,
-    ]);
+    // First create the trip
+    const tripResult = await pool.query(
+      "INSERT INTO trips (user_id, title, start_date, end_date) VALUES ($1, $2, $3, $4) RETURNING *",
+      [userId, title, startDate, endDate]
+    );
 
-    if (user.rows.length === 0) {
-      return res.status(400).json({
-        message: "The email or password is incorrect, please try again.",
-      });
+    const tripId = tripResult.rows[0].trip_id;
+
+    // If there are activities, insert them
+    if (activities && activities.length > 0) {
+      for (const activity of activities) {
+        await pool.query(
+          "INSERT INTO activities (trip_id, name) VALUES ($1, $2)",
+          [tripId, activity]
+        );
+      }
     }
 
-    const isMatch = await bcrypt.compare(password, user.rows[0].password);
-    if (!isMatch) {
-      return res.status(400).json({
-        message: "The email or password is incorrect, please try again.",
-      });
+    res.json(tripResult.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+*/
+
+app.post("/trips", async (req, res) => {
+  const { title, startDate, endDate, activities, destination } = req.body;
+  try {
+    // First, get or create a default user
+    const defaultUserResult = await pool.query(
+      "INSERT INTO users (email, first_name, last_name, password) VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO UPDATE SET email = EXCLUDED.email RETURNING user_id",
+      ['guest@example.com', 'Guest', 'User', 'defaultpassword']
+    );
+    
+    const userId = defaultUserResult.rows[0].user_id;
+
+    // Create the trip with the default user
+    const tripResult = await pool.query(
+      "INSERT INTO trips (user_id, title, start_date, end_date) VALUES ($1, $2, $3, $4) RETURNING *",
+      [userId, title, startDate, endDate]
+    );
+
+    const tripId = tripResult.rows[0].trip_id;
+
+    // If there are activities, insert them
+    if (activities && activities.length > 0) {
+      for (const activity of activities) {
+        await pool.query(
+          "INSERT INTO activities (trip_id, name) VALUES ($1, $2)",
+          [tripId, activity]
+        );
+      }
     }
 
-    const { first_name, last_name, joined_on } = user.rows[0];
-    const returnUser = { email, first_name, last_name, joined_on };
-    res.json(returnUser);
+    res.json(tripResult.rows[0]);
   } catch (err) {
     console.error(err.message);
     res.status(500).json({ message: "Server error" });
   }
 });
 
+
 app.listen(8080, () => {
   console.log("Server listening on port 8080");
 });
+
+
+
 
 /*
 app.listen(5000, () => {

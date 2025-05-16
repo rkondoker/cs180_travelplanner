@@ -2,7 +2,7 @@
 import { useState } from "react";
 //Russell added changes
 import { useRouter } from "next/navigation";
-import { TripFormData, handleTripCreation } from "@/utils/trips/handleTrips";
+import { TripFormData, handleTripCreation } from "@/utils/trips/handleTrip";
 
 /*
 const TripPlanner = () => {

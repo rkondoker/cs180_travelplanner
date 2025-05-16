@@ -13,19 +13,20 @@ export const handleTripCreation = async (formData: TripFormData) => {
     throw new Error("All fields are required");
   }
 
+  /*
   const userStr = localStorage.getItem("user");
   if (!userStr) {
     throw new Error("User not logged in");
   }
   const user = JSON.parse(userStr);
-
+  */
   const response = await fetch("http://localhost:8080/trips", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userId: user.user_id,
+      //userId: user.user_id,
       title: tripName,
       startDate,
       endDate,
