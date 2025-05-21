@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FormData, handleLogin } from "@/utils/login/handleLogin";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Login = () => {
   const router = useRouter();
@@ -66,12 +67,15 @@ const Login = () => {
             />
           </div>
           <div className="flex justify-center gap-30">
-            <button className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 rounded-full font-semibold hover:bg-[#cbb192] transition">
+            <Link
+              href="/createaccount"
+              className="bg-trip-brown-100 hover:bg-[#cbb192] text-trip-brown-200 font-semibold py-2 px-6 rounded-full transition duration-300 transform hover:scale-105 text-center"
+            >
               Sign Up
-            </button>
+            </Link>
             <button
               type="submit"
-              className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 ml-1 rounded-full font-semibold hover:bg-[#cbb192] transition"
+              className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 ml-1 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition"
             >
               Log In
             </button>

@@ -28,7 +28,7 @@ const Login = () => {
         ))}
 
         <div className="flex justify-center">
-          <button className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 ml-1 rounded-full font-semibold hover:bg-[#cbb192] transition">
+          <button className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 ml-1 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition">
             Sign Up
           </button>
         </div>
