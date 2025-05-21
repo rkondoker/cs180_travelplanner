@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "motion/react";
+
 const Login = () => {
   const fields = [
     { label: "Username", type: "text", name: "username" },
@@ -9,7 +12,13 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-trip-brown-200 p-8 rounded-xl w-[32rem] shadow-lg font-trip-main">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        className="bg-trip-brown-200 p-8 rounded-xl w-[32rem] shadow-lg font-trip-main"
+      >
         <h2 className="text-white text-3xl font-bold mb-6 border-b border-white pb-2">
           Create Account
         </h2>
@@ -32,7 +41,7 @@ const Login = () => {
             Sign Up
           </button>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

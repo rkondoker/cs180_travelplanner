@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "cs180_travelplanner": "file:",
     "express": "^5.1.0",
+    "motion": "^12.12.1",
     "next": "15.3.1",
     "next-auth": "^4.24.11",
     "pg": "^8.15.6",

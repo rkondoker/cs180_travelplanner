@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FormData, handleLogin } from "@/utils/login/handleLogin";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const Login = () => {
   const router = useRouter();
@@ -43,7 +44,13 @@ const Login = () => {
           </div>
         )}
       </div>
-      <div className="bg-trip-brown-200 p-8 rounded-xl w-125 shadow-lg font-trip-main">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        className="bg-trip-brown-200 p-8 rounded-xl w-125 shadow-lg font-trip-main"
+      >
         <form onSubmit={handleSubmit}>
           <h2 className="text-white text-3xl font-bold font-trip-main mb-6 border-b border-white pb-2">
             Log in
@@ -81,7 +88,7 @@ const Login = () => {
             </button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </div>
   );
 };
