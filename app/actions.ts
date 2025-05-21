@@ -4,9 +4,9 @@ import { encodedRedirect } from "@/utils/utils";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
-export const signUpAction = async (formData: FormData) => {
-  // Compelte this function to allow the user to sign up
-};
+// export const signUpAction = async (formData: FormData) => {
+// Compelte this function to allow the user to sign up
+// };
 
 export const signInAction = async (formData: FormData) => {
   const email = formData.get("email") as string;

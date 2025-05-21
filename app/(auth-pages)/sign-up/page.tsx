@@ -1,4 +1,4 @@
-import { signUpAction } from "@/app/actions";
+// import { signUpAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
@@ -73,7 +73,7 @@ export default async function Signup(props: {
             </div>
           ))}
           <SubmitButton
-            formAction={signUpAction}
+            // formAction={signUpAction}
             pendingText="Signing up..."
             className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-16 py-2 rounded-full font-semibold hover:bg-[#cbb192] transition"
           >
