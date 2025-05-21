@@ -55,20 +55,48 @@ const Page = () => {
     router.push("/");
   };
   return (
-    <div className="flex flex-col items-center justify-center bg-trip-blue-100 text-white">
-      <p>First Name: {first_name}</p>
-      <p>Last Name: {last_name}</p>
-      <p>Email: {email}</p>
-      <p>Joined: {formattedDate}</p>
-      <p>Weather: {weatherData?.temperature} </p>
-      <p>Weather: {weatherData?.condition} </p>
-      {weatherData?.icon && <weatherData.icon className="text-3xl" />}
-      <button
-        className="bg-trip-brown-100 p-4 text-white"
-        onClick={handleLogout}
-      >
-        Log out
-      </button>
+    <div className="min-h-screen flex items-center justify-center bg-trip-blue-100 text-white p-6">
+      <div className="bg-trip-brown-200 text-white rounded-2xl shadow-lg p-8 w-full max-w-md space-y-6">
+        <h2 className="text-2xl font-bold border-b pb-2">User Profile</h2>
+        <div className="space-y-2">
+          <p>
+            <span className="font-semibold">First Name:</span> {first_name}
+          </p>
+          <p>
+            <span className="font-semibold">Last Name:</span> {last_name}
+          </p>
+          <p>
+            <span className="font-semibold">Email:</span> {email}
+          </p>
+          <p>
+            <span className="font-semibold">Joined:</span> {formattedDate}
+          </p>
+        </div>
+
+        <h2 className="text-xl font-semibold border-b pt-4 pb-2">
+          Current Weather
+        </h2>
+        <div className="space-y-2">
+          <p>
+            <span className="font-semibold">Temperature:</span>{" "}
+            {weatherData?.temperature}
+          </p>
+          <p>
+            <span className="font-semibold">Condition:</span>{" "}
+            {weatherData?.condition}
+          </p>
+          {weatherData?.icon && (
+            <div className="text-3xl">{<weatherData.icon />}</div>
+          )}
+        </div>
+
+        <button
+          onClick={handleLogout}
+          className="w-full bg-trip-brown-100 hover:scale-105 text-black font-medium py-2 px-4 rounded-md transition duration-200"
+        >
+          Log out
+        </button>
+      </div>
     </div>
   );
 };
