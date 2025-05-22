@@ -24,16 +24,10 @@ export default async function Signup(props: {
       placeholder: "email@example.com",
     },
     {
-      label: "First Name",
-      name: "firstName",
+      label: "Username",
+      name: "username",
       type: "text",
-      placeholder: "Your First Name",
-    },
-    {
-      label: "Last Name",
-      name: "lastName",
-      type: "text",
-      placeholder: "Your Last Name",
+      placeholder: "user_example",
     },
     {
       label: "Password",
@@ -68,7 +62,7 @@ export default async function Signup(props: {
                 placeholder={placeholder}
                 type={type}
                 required
-                className="px-3 rounded-xl"
+                className="px-3 rounded-xl text-black"
               />
             </div>
           ))}
