@@ -23,7 +23,7 @@ export default async function ProtectedPage() {
 
   const { data: userInformation, error } = await supabase
     .from("users")
-    .select("first_name, last_name, joined_on")
+    .select("username, age, joined_on")
     .eq("user_id", user.id)
     .single();
 
@@ -41,7 +41,7 @@ export default async function ProtectedPage() {
     );
   }
 
-  const { first_name, last_name, joined_on } = userInformation;
+  const { username, age, joined_on } = userInformation;
 
   return (
     <div className="flex-1 p-5 flex flex-col gap-12 bg-trip-brown-100">
@@ -49,10 +49,10 @@ export default async function ProtectedPage() {
         <h1>Your information</h1>
         <div className="flex flex-col gap-2">
           <p>
-            <strong>First name:</strong> {first_name}
+            <strong>Welcome, </strong> {username}
           </p>
           <p>
-            <strong>Last name:</strong> {last_name}
+            <strong>Your age:</strong> {age}
           </p>
           <p>
             <strong>Joined on:</strong>{" "}
