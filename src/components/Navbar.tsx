@@ -9,7 +9,7 @@ const Navbar = () => {
         <div>
           <Link
             href="/"
-            className="text-amber--200 text-2xl hover:text-gray-300"
+            className="text-trip-brown-100 text-2xl hover:text-[#f6ead4] hover:scale-105"
           >
             TripWise
           </Link>
@@ -17,15 +17,21 @@ const Navbar = () => {
         <div className="flex space-x-6">
           <Link
             href="/trip-planner"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             Trip Planner
           </Link>
           <Link
             href="/my-trips"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             My Trips
+          </Link>
+          <Link
+            href="/account"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
+          >
+            Account
           </Link>
         </div>
       </div>
