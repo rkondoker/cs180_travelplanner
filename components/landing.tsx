@@ -17,7 +17,7 @@ const LandingPage = () => {
     {
       name: "Cade Jordan",
       role: "Frontend Developer",
-      image: "/team/Cade.jpg",
+      image: "/team/Cade.png",
     },
     {
       name: "Russell Kondoker ",
