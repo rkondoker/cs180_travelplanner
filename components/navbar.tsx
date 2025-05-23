@@ -23,7 +23,7 @@ const Navbar = async () => {
         <div>
           <Link
             href="/"
-            className="text-amber--200 text-2xl hover:text-gray-300"
+            className="text-trip-brown-100 text-2xl hover:text-[#f6ead4]"
           >
             TripWise
           </Link>
@@ -31,19 +31,19 @@ const Navbar = async () => {
         <div className="flex space-x-6">
           <Link
             href="/trip-planner"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             Trip Planner
           </Link>
           <Link
             href="/my-trips"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             My Trips
           </Link>
           <button
             type="submit"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
             onClick={signOutAction}
           >
             Sign out
@@ -57,7 +57,7 @@ const Navbar = async () => {
         <div>
           <Link
             href="/"
-            className="text-amber--200 text-2xl hover:text-gray-300"
+            className="text-trip-brown-100 text-2xl hover:text-[#f6ead4]"
           >
             TripWise
           </Link>
@@ -65,13 +65,13 @@ const Navbar = async () => {
         <div className="flex space-x-6">
           <Link
             href="/sign-in"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             Sign In
           </Link>
           <Link
             href="/sign-up"
-            className="text-amber-100 text-lg hover:text-gray-300"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
             Sign Up
           </Link>

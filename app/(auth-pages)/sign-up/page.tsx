@@ -1,20 +1,14 @@
-// import { signUpAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
+// import { signUpAction } from "@/app/actions"; // Uncomment when using formAction
+
 export default async function Signup(props: {
   searchParams: Promise<Message>;
 }) {
   const searchParams = await props.searchParams;
-  if ("message" in searchParams) {
-    return (
-      <div className="w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4">
-        <FormMessage message={searchParams} />
-      </div>
-    );
-  }
 
   const fields = [
     {
@@ -43,39 +37,55 @@ export default async function Signup(props: {
     },
   ];
 
+  if ("message" in searchParams) {
+    return (
+      <div className="w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4">
+        <FormMessage message={searchParams} />
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center mt-5 bg-trip-brown-200 rounded-xl text-white px-12 py-8 font-trip-main">
-      <form className="flex flex-col min-w-64 max-w-64 mx-auto">
-        <h1 className="text-2xl font-medium">Sign up</h1>
-        <p className="text-sm text text-foreground">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-trip-brown-200 p-8 rounded-xl w-[32rem] shadow-lg font-trip-main">
+        <h2 className="text-white text-3xl font-bold mb-2 border-b border-white pb-2">
+          Create Account
+        </h2>
+        <p className="text-sm text-white mb-6">
           Already have an account?{" "}
-          <Link className="text-primary font-medium underline" href="/sign-in">
+          <Link href="/sign-in" className="underline text-trip-brown-100">
             Sign in
           </Link>
         </p>
-        <div className="flex flex-col items-center gap-4 mt-8">
-          {fields.map(({ label, name, type, placeholder }, index) => (
-            <div key={index}>
-              <Label htmlFor={name}>{label}</Label>
+
+        <form className="flex flex-col gap-4">
+          {fields.map(({ label, name, type, placeholder }) => (
+            <div key={name}>
+              <Label htmlFor={name} className="text-white text-sm mb-1 block">
+                {label}
+              </Label>
               <input
+                type={type}
                 name={name}
                 placeholder={placeholder}
-                type={type}
                 required
-                className="px-3 rounded-xl text-black"
+                className="w-full px-3 py-2 rounded bg-white text-black"
               />
             </div>
           ))}
-          <SubmitButton
-            // formAction={signUpAction}
-            pendingText="Signing up..."
-            className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-16 py-2 rounded-full font-semibold hover:bg-[#cbb192] transition"
-          >
-            Sign up
-          </SubmitButton>
+
+          <div className="flex justify-center mt-4">
+            <SubmitButton
+              // formAction={signUpAction}
+              pendingText="Signing up..."
+              className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition"
+            >
+              Sign Up
+            </SubmitButton>
+          </div>
           <FormMessage message={searchParams} />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
