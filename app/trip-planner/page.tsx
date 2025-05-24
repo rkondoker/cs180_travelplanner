@@ -1,13 +1,14 @@
 import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
+import { createTripAction } from "@/app/actions";
 
 const fields = [
   { label: "Trip Name", name: "trip-name", type: "text", placeholder: "" },
   {
-    label: "Country",
+    label: "State or  Country",
     name: "destination",
     type: "text",
-    placeholder: "United States of America",
+    placeholder: "California or United States of America",
   },
   { label: "City", name: "city", type: "text", placeholder: "Riverside" },
   { label: "Start Date", name: "start-date", type: "date", placeholder: "" },
@@ -40,7 +41,7 @@ export default async function Login() {
         <div className="flex justify-center items-center mt-5">
           <SubmitButton
             pendingText="Creating Trip.."
-            // formAction={signInAction}
+            formAction={createTripAction}
             className="bg-trip-blue-200 w-1/5 justify-center mt-5 items-center text-trip-brown-100 px-16 py-2 rounded-full font-semibold hover:scale-105 hover:bg-trip-blue-200 transition"
           >
             Create Trip
