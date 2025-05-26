@@ -1,6 +1,5 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
-import { format } from "date-fns";
 import { deleteTrip } from "@/app/actions";
 
 interface Activity {
