@@ -49,9 +49,7 @@ export default async function TripPlanner({
     <div className="flex flex-col items-center justify-center m-10 w-3/4 bg-trip-brown-100 rounded-xl p-8 font-trip-main">
       <form className="flex flex-col w-11/12 items-stretch w-full text-3xl font-trip-main">
         {editId ? "Edit Trip" : "Create Trip"}
-        {editId && (
-          <input type="hidden" name="edit_id" value={editId} />
-        )}
+        {editId && <input type="hidden" name="edit_id" value={editId} />}
         <div className="flex flex-col text-xl gap-2 mt-8">
           {fields.map(({ label, name, type, placeholder }) => (
             <div

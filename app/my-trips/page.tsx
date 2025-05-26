@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import Trip from "./trip";
 import Link from "next/link";
 
-
 interface Activity {
   activity_id: string;
   trip_id: string;
@@ -15,15 +14,12 @@ interface Activity {
 }
 
 export default async function MyTrips() {
- 
   const supabase = await createClient();
-
 
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
-
 
   if (userError || !user) {
     return redirect("/sign-in");
@@ -51,10 +47,7 @@ export default async function MyTrips() {
   const { data: activities, error: activitiesError } = await supabase
     .from("activities")
     .select("*")
-    .in(
-      "trip_id",
-      trips?.map((trip) => trip.trip_id) || []
-    );
+    .in("trip_id", trips?.map((trip) => trip.trip_id) || []);
 
   // Log any errors in fetching activities
   if (activitiesError) {
@@ -63,25 +56,32 @@ export default async function MyTrips() {
 
   // This will help group the activities through a trip ID
   // Creates an object so each key will be a trip ID and the value is in an arr of activities for that trip
-  const activitiesByTrip = (activities || []).reduce((acc, activity) => {
-    if (!acc[activity.trip_id]) {
-      acc[activity.trip_id] = [];
-    }
-    acc[activity.trip_id].push(activity);
-    return acc;
-  }, {} as Record<string, Activity[]>);
+  const activitiesByTrip = (activities || []).reduce(
+    (acc, activity) => {
+      if (!acc[activity.trip_id]) {
+        acc[activity.trip_id] = [];
+      }
+      acc[activity.trip_id].push(activity);
+      return acc;
+    },
+    {} as Record<string, Activity[]>,
+  );
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
       <div className="w-full">
         {}
-        <h1 className="text-3xl font-bold text-trip-brown-200 mb-8">My Trips</h1>
-        
+        <h1 className="text-3xl font-bold text-trip-brown-200 mb-8">
+          My Trips
+        </h1>
+
         {}
         {!trips || trips.length === 0 ? (
           // When no trip exists
           <div className="flex flex-col items-center justify-center p-12 bg-trip-brown-100 rounded-xl">
-            <p className="text-2xl text-trip-brown-200 font-semibold mb-6">No trips here! Would you like to make one?</p>
+            <p className="text-2xl text-trip-brown-200 font-semibold mb-6">
+              No trips here! Would you like to make one?
+            </p>
           </div>
         ) : (
           // Display list of trips if they exist

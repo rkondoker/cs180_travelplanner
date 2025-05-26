@@ -76,7 +76,9 @@ export const createTripAction = async (formData: FormData) => {
     error = updateError;
   } else {
     // Create new trip
-    const { error: insertError } = await supabase.from("trips").insert([tripData]);
+    const { error: insertError } = await supabase
+      .from("trips")
+      .insert([tripData]);
     error = insertError;
   }
 
@@ -87,23 +89,19 @@ export const createTripAction = async (formData: FormData) => {
   return redirect("/my-trips");
 };
 
-
 //  Deletes a trip from the database
 //  formData - Form data containing the tripId to delete
 //  Redirect to my-trips page on success, error redirect on failure
-  
+
 export const deleteTrip = async (formData: FormData) => {
   // Initialize Supabase client
   const supabase = await createClient();
-  
+
   // Get the trip ID from the form data
   const tripId = formData.get("tripId") as string;
 
   // Attempt to delete the trip from the database
-  const { error } = await supabase
-    .from("trips")
-    .delete()
-    .eq("trip_id", tripId);
+  const { error } = await supabase.from("trips").delete().eq("trip_id", tripId);
 
   // Handle any errors during deletion
   if (error) {
@@ -111,10 +109,9 @@ export const deleteTrip = async (formData: FormData) => {
     return encodedRedirect(
       "error",
       "/my-trips",
-      "Failed to delete trip. Please try again."
+      "Failed to delete trip. Please try again.",
     );
   }
-
 
   return redirect("/my-trips");
 };
