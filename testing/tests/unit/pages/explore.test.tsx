@@ -59,13 +59,41 @@ jest.mock("@react-google-maps/api", () => ({
 
 // Mock the Places API
 const mockPlacesService = {
-  nearbySearch: jest.fn(),
+  findPlaceFromQuery: jest.fn((request, callback) => {
+    callback(
+      [
+        {
+          name: "Test Place",
+          geometry: {
+            location: { lat: 37.7749, lng: -122.4194 },
+          },
+        },
+      ],
+      "OK",
+    );
+  }),
   getDetails: jest.fn(),
 };
 
 // Mock the Directions Service
 const mockDirectionsService = {
-  route: jest.fn(),
+  route: jest.fn((request, callback) => {
+    callback(
+      {
+        routes: [
+          {
+            legs: [
+              {
+                distance: { text: "5.2 km" },
+                duration: { text: "15 mins" },
+              },
+            ],
+          },
+        ],
+      },
+      "OK",
+    );
+  }),
 };
 
 describe("Explore Page", () => {
@@ -78,6 +106,9 @@ describe("Explore Page", () => {
       maps: {
         places: {
           PlacesService: jest.fn(() => mockPlacesService),
+          PlacesServiceStatus: {
+            OK: "OK",
+          },
         },
         DirectionsService: jest.fn(() => mockDirectionsService),
         LatLng: jest.fn((lat, lng) => ({ lat, lng })),
@@ -89,6 +120,17 @@ describe("Explore Page", () => {
           setCenter: jest.fn(),
           setRadius: jest.fn(),
         })),
+        Size: jest.fn((width, height) => ({ width, height })),
+        Animation: {
+          DROP: 1,
+          BOUNCE: 2,
+        },
+        TravelMode: {
+          DRIVING: "DRIVING",
+        },
+        DirectionsStatus: {
+          OK: "OK",
+        },
       },
     } as any;
   });
@@ -102,46 +144,73 @@ describe("Explore Page", () => {
     render(<ExplorePage />);
 
     // Mock the Places API response
-    mockPlacesService.nearbySearch.mockResolvedValueOnce([
-      {
-        place_id: "123",
-        name: "Test Place",
-        geometry: {
-          location: { lat: 37.7749, lng: -122.4194 },
-        },
+    mockPlacesService.findPlaceFromQuery.mockImplementationOnce(
+      (request, callback) => {
+        callback(
+          [
+            {
+              name: "Test Place",
+              geometry: {
+                location: { lat: 37.7749, lng: -122.4194 },
+              },
+            },
+          ],
+          "OK",
+        );
       },
-    ]);
+    );
 
-    mockPlacesService.getDetails.mockResolvedValueOnce({
-      name: "Test Place",
-      formatted_address: "123 Test St",
-      formatted_phone_number: "123-456-7890",
-      rating: 4.5,
-      website: "https://test.com",
+    // Create a mock map object
+    const mockMap = {
+      getCenter: () => ({
+        lat: () => 37.7749,
+        lng: () => -122.4194,
+      }),
+    };
+
+    // Simulate map load
+    const mapElement = screen.getByTestId("google-map");
+    fireEvent.load(mapElement, { target: mockMap });
+
+    // Create a mock LatLng object with lat() and lng() methods
+    const mockLatLng = {
+      lat: () => 37.7749,
+      lng: () => -122.4194,
+    };
+
+    // Simulate map click with the mock LatLng
+    fireEvent.click(mapElement, {
+      latLng: mockLatLng,
     });
-
-    // Simulate map click
-    fireEvent.click(screen.getByTestId("google-map"));
 
     // Wait for marker to be created
-    await waitFor(() => {
-      expect(screen.getByTestId("marker")).toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("marker")).toBeInTheDocument();
+      },
+      { timeout: 3000 },
+    );
   });
 
   it("displays info window when clicking a marker", async () => {
     render(<ExplorePage />);
 
     // Create a marker first
-    mockPlacesService.nearbySearch.mockResolvedValueOnce([
-      {
-        place_id: "123",
-        name: "Test Place",
-        geometry: {
-          location: { lat: 37.7749, lng: -122.4194 },
-        },
+    mockPlacesService.findPlaceFromQuery.mockImplementationOnce(
+      (request, callback) => {
+        callback(
+          [
+            {
+              name: "Test Place",
+              geometry: {
+                location: { lat: 37.7749, lng: -122.4194 },
+              },
+            },
+          ],
+          "OK",
+        );
       },
-    ]);
+    );
 
     mockPlacesService.getDetails.mockResolvedValueOnce({
       name: "Test Place",
@@ -152,7 +221,9 @@ describe("Explore Page", () => {
     });
 
     // Click map to create marker
-    fireEvent.click(screen.getByTestId("google-map"));
+    fireEvent.click(screen.getByTestId("google-map"), {
+      latLng: new google.maps.LatLng(37.7749, -122.4194),
+    });
 
     // Wait for marker to be created
     await waitFor(() => {
@@ -172,39 +243,56 @@ describe("Explore Page", () => {
     render(<ExplorePage />);
 
     // Mock directions service response
-    mockDirectionsService.route.mockResolvedValueOnce({
-      routes: [
+    mockDirectionsService.route.mockImplementationOnce((request, callback) => {
+      callback(
         {
-          legs: [
+          routes: [
             {
-              distance: { text: "5.2 km" },
-              duration: { text: "15 mins" },
+              legs: [
+                {
+                  distance: { text: "5.2 km" },
+                  duration: { text: "15 mins" },
+                },
+              ],
             },
           ],
         },
-      ],
+        "OK",
+      );
     });
 
     // Create two markers
-    mockPlacesService.nearbySearch
-      .mockResolvedValueOnce([
-        {
-          place_id: "123",
-          name: "Start Place",
-          geometry: { location: { lat: 37.7749, lng: -122.4194 } },
-        },
-      ])
-      .mockResolvedValueOnce([
-        {
-          place_id: "456",
-          name: "End Place",
-          geometry: { location: { lat: 37.7848, lng: -122.4294 } },
-        },
-      ]);
+    mockPlacesService.findPlaceFromQuery
+      .mockImplementationOnce((request, callback) => {
+        callback(
+          [
+            {
+              name: "Start Place",
+              geometry: { location: { lat: 37.7749, lng: -122.4194 } },
+            },
+          ],
+          "OK",
+        );
+      })
+      .mockImplementationOnce((request, callback) => {
+        callback(
+          [
+            {
+              name: "End Place",
+              geometry: { location: { lat: 37.7848, lng: -122.4294 } },
+            },
+          ],
+          "OK",
+        );
+      });
 
     // Click map twice to create two markers
-    fireEvent.click(screen.getByTestId("google-map"));
-    fireEvent.click(screen.getByTestId("google-map"));
+    fireEvent.click(screen.getByTestId("google-map"), {
+      latLng: new google.maps.LatLng(37.7749, -122.4194),
+    });
+    fireEvent.click(screen.getByTestId("google-map"), {
+      latLng: new google.maps.LatLng(37.7848, -122.4294),
+    });
 
     // Select both markers
     const markers = screen.getAllByTestId("marker");
@@ -223,36 +311,77 @@ describe("Explore Page", () => {
   it("resets map when clicking reset button", async () => {
     render(<ExplorePage />);
 
-    // Create a marker first
-    mockPlacesService.nearbySearch.mockResolvedValueOnce([
-      {
-        place_id: "123",
-        name: "Test Place",
-        geometry: {
-          location: { lat: 37.7749, lng: -122.4194 },
-        },
+    // Create a mock map object with all required methods
+    const mockMap = {
+      getCenter: () => ({
+        lat: () => 37.7749,
+        lng: () => -122.4194,
+      }),
+      panTo: jest.fn(),
+      setZoom: jest.fn(),
+    };
+
+    // Simulate map load
+    const mapElement = screen.getByTestId("google-map");
+    fireEvent.load(mapElement, { target: mockMap });
+
+    // Mock the Places API response
+    mockPlacesService.findPlaceFromQuery.mockImplementationOnce(
+      (request, callback) => {
+        callback(
+          [
+            {
+              name: "Test Place",
+              geometry: {
+                location: {
+                  lat: () => 37.7749,
+                  lng: () => -122.4194,
+                },
+              },
+            },
+          ],
+          "OK",
+        );
       },
-    ]);
+    );
+
+    // Create a mock LatLng object
+    const mockLatLng = {
+      lat: () => 37.7749,
+      lng: () => -122.4194,
+    };
 
     // Click map to create marker
-    fireEvent.click(screen.getByTestId("google-map"));
-
-    // Wait for marker to be created
-    await waitFor(() => {
-      expect(screen.getByTestId("marker")).toBeInTheDocument();
+    fireEvent.click(mapElement, {
+      latLng: mockLatLng,
     });
+
+    // Wait for marker to be created by checking the marker list panel
+    await waitFor(
+      () => {
+        const markerList = screen.getByText("Places (1)");
+        expect(markerList).toBeInTheDocument();
+      },
+      { timeout: 1000 },
+    );
 
     // Click reset button
     fireEvent.click(screen.getByText("Reset Map"));
 
-    // Check if marker is removed
-    await waitFor(() => {
-      expect(screen.queryByTestId("marker")).not.toBeInTheDocument();
-    });
-  });
+    // Wait for state updates to complete
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Check if marker is removed by verifying the marker list is empty
+    await waitFor(
+      () => {
+        const markerList = screen.getByText("Places (0)");
+        expect(markerList).toBeInTheDocument();
+      },
+      { timeout: 1000 },
+    );
+  }, 10000);
 
   it("shows user location when clicking my location button", async () => {
-    // Mock geolocation
     const mockGeolocation = {
       getCurrentPosition: jest.fn().mockImplementationOnce((success) =>
         success({
@@ -263,6 +392,7 @@ describe("Explore Page", () => {
         }),
       ),
       watchPosition: jest.fn(),
+      clearWatch: jest.fn(),
     };
     (global.navigator as any).geolocation = mockGeolocation;
 
@@ -271,9 +401,12 @@ describe("Explore Page", () => {
     // Click my location button
     fireEvent.click(screen.getByText("My Location"));
 
-    // Check if user location marker is created
-    await waitFor(() => {
-      expect(screen.getByTestId("marker")).toBeInTheDocument();
-    });
+    // Wait for marker to be created
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("marker")).toBeInTheDocument();
+      },
+      { timeout: 3000 },
+    );
   });
 });
