@@ -41,6 +41,12 @@ const Navbar = async () => {
           >
             My Trips
           </Link>
+          <Link
+            href="/explore"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
+          >
+            Explore
+          </Link>
           <button
             type="submit"
             className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
@@ -63,6 +69,12 @@ const Navbar = async () => {
           </Link>
         </div>
         <div className="flex space-x-6">
+          <Link
+            href="/explore"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
+          >
+            Explore
+          </Link>
           <Link
             href="/sign-in"
             className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
