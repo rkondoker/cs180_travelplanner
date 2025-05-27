@@ -23,7 +23,7 @@ export default async function ProtectedPage() {
 
   const { data: userInformation, error } = await supabase
     .from("users")
-    .select("username, age, joined_on")
+    .select("username, joined_on")
     .eq("user_id", user.id)
     .single();
 
@@ -41,7 +41,7 @@ export default async function ProtectedPage() {
     );
   }
 
-  const { username, age, joined_on } = userInformation;
+  const { username, joined_on } = userInformation;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-trip-blue-100 text-white p-6">
@@ -50,9 +50,6 @@ export default async function ProtectedPage() {
         <div className="space-y-2">
           <p>
             <strong>Welcome, </strong> {username}
-          </p>
-          <p>
-            <strong>Your age:</strong> {age}
           </p>
           <p>
             <strong>Joined on:</strong>{" "}

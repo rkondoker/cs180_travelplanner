@@ -1,9 +1,8 @@
+import { signUpAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-
-// import { signUpAction } from "@/app/actions"; // Uncomment when using formAction
 
 export default async function Signup(props: {
   searchParams: Promise<Message>;
@@ -73,10 +72,9 @@ export default async function Signup(props: {
               />
             </div>
           ))}
-
           <div className="flex justify-center mt-4">
             <SubmitButton
-              // formAction={signUpAction}
+              formAction={signUpAction}
               pendingText="Signing up..."
               className="bg-trip-brown-100 w-1/4 text-trip-brown-200 px-4 py-2 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition"
             >
