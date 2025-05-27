@@ -1,12 +1,18 @@
 import "@testing-library/jest-dom";
 import React, { ReactNode } from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  Marker,
+  InfoWindow,
+  LoadScript,
+} from "@react-google-maps/api";
 import ExplorePage from "@/app/explore/page";
 import { createClient } from "@/utils/supabase/server";
 
 // Mock the Google Maps API
 jest.mock("@react-google-maps/api", () => ({
+  LoadScript: ({ children }: { children: ReactNode }) => <div>{children}</div>,
   GoogleMap: ({
     children,
     onLoad,
@@ -77,6 +83,11 @@ describe("Explore Page", () => {
         LatLng: jest.fn((lat, lng) => ({ lat, lng })),
         LatLngBounds: jest.fn(() => ({
           contains: jest.fn(() => true),
+        })),
+        Circle: jest.fn(() => ({
+          setMap: jest.fn(),
+          setCenter: jest.fn(),
+          setRadius: jest.fn(),
         })),
       },
     } as any;
