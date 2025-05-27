@@ -1,5 +1,5 @@
 import express from "express";
-import cors from "cors"
+import cors from "cors";
 import pool from "./db.js";
 import bcrypt from "bcrypt";
 
@@ -69,15 +69,15 @@ app.post("/trips", async (req, res) => {
     // First, get or create a default user
     const defaultUserResult = await pool.query(
       "INSERT INTO users (email, first_name, last_name, password) VALUES ($1, $2, $3, $4) ON CONFLICT (email) DO UPDATE SET email = EXCLUDED.email RETURNING user_id",
-      ['guest@example.com', 'Guest', 'User', 'defaultpassword']
+      ["guest@example.com", "Guest", "User", "defaultpassword"],
     );
-    
+
     const userId = defaultUserResult.rows[0].user_id;
 
     // Create the trip with the default user
     const tripResult = await pool.query(
       "INSERT INTO trips (user_id, title, start_date, end_date) VALUES ($1, $2, $3, $4) RETURNING *",
-      [userId, title, startDate, endDate]
+      [userId, title, startDate, endDate],
     );
 
     const tripId = tripResult.rows[0].trip_id;
@@ -87,7 +87,7 @@ app.post("/trips", async (req, res) => {
       for (const activity of activities) {
         await pool.query(
           "INSERT INTO activities (trip_id, name) VALUES ($1, $2)",
-          [tripId, activity]
+          [tripId, activity],
         );
       }
     }
@@ -99,13 +99,9 @@ app.post("/trips", async (req, res) => {
   }
 });
 
-
 app.listen(8080, () => {
   console.log("Server listening on port 8080");
 });
-
-
-
 
 /*
 app.listen(5000, () => {
