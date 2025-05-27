@@ -13,7 +13,7 @@ export const handleTripCreation = async (formData: TripFormData) => {
     throw new Error("All fields are required");
   }
 
-  /*
+  /*  
   const userStr = localStorage.getItem("user");
   if (!userStr) {
     throw new Error("User not logged in");
