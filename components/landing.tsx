@@ -40,7 +40,7 @@ const LandingPage = () => {
 
       <section className="py-10 bg-white/5">
         <div className="container mx-auto px-8">
-          <h2 className="tex5t-5xl font-bold text-center text-white mb-10">
+          <h2 className="text-3xl font-bold text-center text-white mb-10">
             Meet Our Team
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-cols-3 gap-12">
