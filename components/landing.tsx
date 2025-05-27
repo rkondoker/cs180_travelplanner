@@ -1,41 +1,9 @@
 "use client";
 import Link from "next/link";
+import teamMembers from "@/app/data/Members/members";
 import Image from "next/image";
 
 const LandingPage = () => {
-  const teamMembers = [
-    {
-      name: "Jimmy Munoz",
-      role: "Project Manager",
-      image: "/team/Jimmy.jpg",
-    },
-    {
-      name: "Morad Irshaid",
-      role: "Backend Developer",
-      image: "/team/Morad.jpg",
-    },
-    {
-      name: "Cade Jordan",
-      role: "Frontend Developer",
-      image: "/team/Cade.jpg",
-    },
-    {
-      name: "Russell Kondoker ",
-      role: "Backend Developer",
-      image: "/team/Russell.jpg",
-    },
-    {
-      name: "Ihsan Sarwar",
-      role: "Frontend Developer",
-      image: "/team/Ihsan.jpg",
-    },
-    {
-      name: "Tegh Gill",
-      role: "Backend Developer",
-      image: "/team/Tegh.jpg",
-    },
-  ];
-
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-blue-400 to-green-600">
       <section className="min-h-screen flex flex-col items-center justify-center text-white p-8 pt-24">

@@ -44,10 +44,10 @@ export default async function ProtectedPage() {
   const { username, joined_on } = userInformation;
 
   return (
-    <div className="flex-1 p-5 flex flex-col gap-12 bg-trip-brown-100">
-      <div>
-        <h1>Your information</h1>
-        <div className="flex flex-col gap-2">
+    <div className="min-h-screen flex items-center justify-center bg-trip-blue-100 text-white p-6">
+      <div className="bg-trip-brown-200 text-white rounded-2xl shadow-lg p-8 w-full max-w-md space-y-6">
+        <h2 className="text-2xl font-bold border-b pb-2">Your Information</h2>
+        <div className="space-y-2">
           <p>
             <strong>Welcome, </strong> {username}
           </p>
@@ -55,9 +55,10 @@ export default async function ProtectedPage() {
             <strong>Joined on:</strong>{" "}
             {new Date(joined_on).toLocaleDateString()}
           </p>
-          <p>Weather: {weatherData?.condition}</p>
-          <p>Temperature: {weatherData?.temperature}°F</p>
+          <p> Weather: {weatherData?.condition}</p>
+          <p> Temperature: {weatherData?.temperature}°F</p>
           <p>
+            {" "}
             Location: {location.city}, {location.stateOrCountry}
           </p>
           {weatherData?.icon && <weatherData.icon size={48} />}
