@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-import Trip from "./trip";
+import Trip from "@/components/my-trips/trip";
 import Link from "next/link";
 
 interface Activity {
@@ -70,8 +70,7 @@ export default async function MyTrips() {
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
       <div className="w-full">
-        {}
-        <h1 className="text-3xl font-bold text-trip-brown-200 mb-8">
+        <h1 className="text-3xl font-bold text-trip-brown-200 mb-8 text-center">
           My Trips
         </h1>
 
@@ -85,7 +84,7 @@ export default async function MyTrips() {
           </div>
         ) : (
           // Display list of trips if they exist
-          <div className="flex flex-col gap-6 p-6 w-full">
+          <div className="flex flex-col gap-6 p-6 w-4/5 mx-auto">
             {trips.map((trip) => (
               <Trip
                 key={trip.trip_id}
