@@ -87,6 +87,12 @@ const Navbar = async () => {
           >
             Sign Up
           </Link>
+          <Link
+            href="/about"
+            className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
+          >
+            About Us
+          </Link>
         </div>
       </div>
     </nav>
