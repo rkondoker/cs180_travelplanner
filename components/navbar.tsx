@@ -42,10 +42,10 @@ const Navbar = async () => {
             My Trips
           </Link>
           <Link
-            href="/explore"
+            href="/account/activities"
             className="text-trip-brown-100 text-lg hover:text-[#f6ead4] hover:scale-105"
           >
-            Explore
+            Activities
           </Link>
           <button
             type="submit"
