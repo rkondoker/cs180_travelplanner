@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import {
   GoogleMap,
   LoadScript,
   Marker,
   DirectionsRenderer,
+  InfoWindow,
 } from "@react-google-maps/api";
 import { useState, useEffect } from "react";
 
@@ -22,6 +24,11 @@ type MapMarker = {
   };
   name: string;
   selected: boolean; // Add this to track selection
+  details?: {
+    name?: string;
+    address?: string;
+    phone?: string;
+  };
 };
 
 export default function ExplorePage() {
@@ -42,6 +49,7 @@ export default function ExplorePage() {
   } | null>(null);
   const [locationCircle, setLocationCircle] =
     useState<google.maps.Circle | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<MapMarker | null>(null);
 
   const onLoad = (map: google.maps.Map) => {
     setMap(map);
@@ -221,6 +229,11 @@ export default function ExplorePage() {
     }
   };
 
+  const handleMarkerClick = (marker: MapMarker) => {
+    setSelectedMarker(marker);
+    toggleMarkerSelection(marker.id);
+  };
+
   useEffect(() => {
     return () => {
       if (watchId !== null) {
@@ -261,17 +274,51 @@ export default function ExplorePage() {
           )}
           {/* Render all markers */}
           {markers.map((marker) => (
-            <Marker
-              key={marker.id}
-              position={marker.position}
-              onLoad={handleMarkerLoad}
-              onClick={() => toggleMarkerSelection(marker.id)}
-              icon={{
-                url: marker.selected
-                  ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-                  : "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-              }}
-            />
+            <React.Fragment key={marker.id}>
+              <Marker
+                position={marker.position}
+                onLoad={handleMarkerLoad}
+                onClick={() => handleMarkerClick(marker)}
+                icon={{
+                  url: marker.selected
+                    ? "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                    : "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                }}
+              />
+              {selectedMarker?.id === marker.id && (
+                <InfoWindow
+                  position={marker.position}
+                  onCloseClick={() => setSelectedMarker(null)}
+                >
+                  <div className="p-2 max-w-xs">
+                    <h3 className="font-bold text-lg">
+                      {marker.details?.name || "Unnamed Location"}
+                    </h3>
+                    {marker.details?.address && (
+                      <p className="text-sm text-gray-600">
+                        {marker.details.address}
+                      </p>
+                    )}
+                    {marker.details?.phone && (
+                      <p className="text-sm text-gray-600">
+                        {marker.details.phone}
+                      </p>
+                    )}
+                    <div className="mt-2 flex justify-end">
+                      <button
+                        onClick={() => {
+                          setSelectedMarker(null);
+                          setMarkers(markers.filter((m) => m.id !== marker.id));
+                        }}
+                        className="text-red-500 hover:text-red-700 text-sm"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </InfoWindow>
+              )}
+            </React.Fragment>
           ))}
           {directions && <DirectionsRenderer directions={directions} />}
         </GoogleMap>
