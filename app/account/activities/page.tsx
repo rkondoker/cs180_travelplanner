@@ -23,6 +23,38 @@ export default function ActivitiesPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const supabase = createClient();
+  const location = [
+    {
+      name: "street_address",
+      type: "text",
+      label: "Street Address",
+      placeholder: "e.g., 123 Next St",
+    },
+    {
+      name: "city",
+      type: "text",
+      label: "City",
+      placeholder: "e.g., Riverside",
+    },
+    {
+      name: "state",
+      type: "text",
+      label: "State",
+      placeholder: "e.g., California",
+    },
+    {
+      name: "postal_code",
+      type: "text",
+      label: "Postal Code",
+      placeholder: "e.g., 92635",
+    },
+    {
+      name: "country",
+      type: "text",
+      label: "Country",
+      placeholder: "e.g., United States",
+    },
+  ];
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -75,11 +107,15 @@ export default function ActivitiesPage() {
 
       const activityData = {
         trip_id: selectedTrip,
-        user_id: user.id,
+        // user_id: user.id,
         name: formData.get("activity-name"),
         description: formData.get("description"),
         date: formData.get("date"),
-        location: formData.get("location"),
+        street_address: formData.get("street_address"),
+        city: formData.get("city"),
+        state: formData.get("state"),
+        postal_code: formData.get("postal_code"),
+        country: formData.get("country"),
         start_time: formData.get("start-time"),
         end_time: formData.get("end-time"),
       };
@@ -207,20 +243,21 @@ export default function ActivitiesPage() {
               />
             </div>
 
-            <div>
-              <Label htmlFor="location" className="text-white mb-2 block">
-                Location
-              </Label>
-              <input
-                id="location"
-                name="location"
-                type="text"
-                required
-                className="w-full px-3 py-2 rounded bg-white text-black"
-                placeholder="e.g., 123 Main St, City"
-              />
-            </div>
-
+            {location.map(({ name, type, label, placeholder }, index) => (
+              <div key={index}>
+                <Label htmlFor={name} className="text-white mb-2 block">
+                  {label}
+                </Label>
+                <input
+                  id={name}
+                  name={name}
+                  type={type}
+                  required
+                  className="w-full px-3 py-2 rounded bg-white text-black"
+                  placeholder={placeholder}
+                />
+              </div>
+            ))}
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="start-time" className="text-white mb-2 block">
