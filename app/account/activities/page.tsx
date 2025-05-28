@@ -107,7 +107,6 @@ export default function ActivitiesPage() {
 
       const activityData = {
         trip_id: selectedTrip,
-        // user_id: user.id,
         name: formData.get("activity-name"),
         description: formData.get("description"),
         date: formData.get("date"),
