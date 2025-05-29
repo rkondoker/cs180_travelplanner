@@ -23,27 +23,27 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/10</span>
+            <span class="fraction">10/10</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">0/2</span>
+            <span class="fraction">2/2</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/3</span>
+            <span class="fraction">3/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/10</span>
+            <span class="fraction">10/10</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -167,9 +167,9 @@
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -190,16 +190,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,8 +208,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,7 +239,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,9 +275,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ChevronDown } from <span class="cstat-no" title="statement not covered" >"lucide-react";</span>
-import Link from <span class="cstat-no" title="statement not covered" >"next/link";</span>
-import { deleteTrip } from <span class="cstat-no" title="statement not covered" >"@/app/actions";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { deleteTrip } from "@/app/actions";
 &nbsp;
 interface Activity {
   id: string;
@@ -297,27 +297,27 @@ type TripProps = {
   activities?: Activity[];
 };
 &nbsp;
-function <span class="fstat-no" title="function not covered" >addOneDay(d</span>ateString: string): string {
-  const date = <span class="cstat-no" title="statement not covered" >new Date(dateString);</span>
-<span class="cstat-no" title="statement not covered" >  date.setDate(date.getDate() + 1);</span>
-<span class="cstat-no" title="statement not covered" >  return date.toLocaleDateString(undefined, {</span>
+function addOneDay(dateString: string): string {
+  const date = new Date(dateString);
+  date.setDate(date.getDate() + 1);
+  return date.toLocaleDateString(undefined, {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
 }
 &nbsp;
-export default function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Trip({</span></span>
+export default function Trip({
   trip_id,
   title,
   start_date,
   end_date,
   city,
   state_or_country,
-  activities = <span class="branch-0 cbranch-no" title="branch not covered" >[],</span>
+  activities = [],
 }: TripProps) {
-  const formattedStart = <span class="cstat-no" title="statement not covered" >addOneDay(start_date);</span>
-  const formattedEnd = <span class="cstat-no" title="statement not covered" >addOneDay(end_date);</span>
+  const formattedStart = addOneDay(start_date);
+  const formattedEnd = addOneDay(end_date);
 &nbsp;
   return (
     &lt;div className="bg-trip-brown-100 rounded-xl p-6 w-full text-white font-trip-main"&gt;
@@ -346,8 +346,8 @@ export default function <span class="cstat-no" title="statement not covered" ><s
           &lt;/button&gt;
           &lt;div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block"&gt;
             {activities.length &gt; 0 ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >              activities.map(<span class="fstat-no" title="function not covered" >(a</span>ctivity) =&gt; (</span>
-<span class="cstat-no" title="statement not covered" >                &lt;div</span>
+              activities.map((activity) =&gt; (
+                &lt;div
                   key={activity.id}
                   className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 &gt;
@@ -397,7 +397,7 @@ export default function <span class="cstat-no" title="statement not covered" ><s
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T05:04:48.936Z
+      at 2025-05-29T16:26:44.047Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

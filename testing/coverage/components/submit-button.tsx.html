@@ -23,27 +23,27 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/4</span>
+            <span class="fraction">4/4</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">33.33% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">0/3</span>
+            <span class="fraction">1/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/1</span>
+            <span class="fraction">1/1</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/4</span>
+            <span class="fraction">4/4</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -84,20 +84,20 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -107,24 +107,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use client";
 &nbsp;
-import { Button } from <span class="cstat-no" title="statement not covered" >"@/components/ui/button";</span>
+import { Button } from "@/components/ui/button";
 import { type ComponentProps } from "react";
-import { useFormStatus } from <span class="cstat-no" title="statement not covered" >"react-dom";</span>
+import { useFormStatus } from "react-dom";
 &nbsp;
 type Props = ComponentProps&lt;typeof Button&gt; &amp; {
   pendingText?: string;
 };
 &nbsp;
-export function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >SubmitButton({</span></span>
+export function SubmitButton({
   children,
   pendingText = <span class="branch-0 cbranch-no" title="branch not covered" >"Submitting...",</span>
   ...props
 }: Props) {
-  const { pending } = <span class="cstat-no" title="statement not covered" >useFormStatus();</span>
+  const { pending } = useFormStatus();
 &nbsp;
   return (
     &lt;Button type="submit" aria-disabled={pending} {...props}&gt;
-      {pending ? pendingText : children}
+      {pending ? <span class="branch-0 cbranch-no" title="branch not covered" >pendingText : c</span>hildren}
     &lt;/Button&gt;
   );
 }
@@ -142,7 +142,7 @@ export function <span class="cstat-no" title="statement not covered" ><span clas
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T05:04:48.971Z
+      at 2025-05-29T16:26:44.085Z
     </div>
     <script src="../prettify.js"></script>
     <script>
