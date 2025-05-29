@@ -120,7 +120,8 @@ export const createTripAction = async (formData: FormData) => {
     const { error: updateError } = await supabase
       .from("trips")
       .update(tripData)
-      .eq("trip_id", editId);
+      .eq("trip_id", editId)
+      .eq("user_id", user.id);
     error = updateError;
   } else {
     // Create new trip
@@ -131,6 +132,7 @@ export const createTripAction = async (formData: FormData) => {
   }
 
   if (error) {
+    console.error("Error creating/updating trip:", error);
     return encodedRedirect("error", "/trip-planner", error.message);
   }
 
