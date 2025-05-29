@@ -204,7 +204,10 @@ export default function ActivitiesPage() {
           <>
             <form className="space-y-4" action={handleActivitySubmit}>
               <div>
-                <Label htmlFor="activity-name" className="text-white mb-2 block">
+                <Label
+                  htmlFor="activity-name"
+                  className="text-white mb-2 block"
+                >
                   Activity Name
                 </Label>
                 <input
@@ -297,12 +300,24 @@ export default function ActivitiesPage() {
               </div>
             </form>
 
-            {trips.find(trip => trip.trip_id === selectedTrip) && (
+            {trips.find((trip) => trip.trip_id === selectedTrip) && (
               <AIActivitySuggestions
-                city={trips.find(trip => trip.trip_id === selectedTrip)?.city || ""}
-                stateOrCountry={trips.find(trip => trip.trip_id === selectedTrip)?.state_or_country || ""}
-                startDate={trips.find(trip => trip.trip_id === selectedTrip)?.start_date || ""}
-                endDate={trips.find(trip => trip.trip_id === selectedTrip)?.end_date || ""}
+                city={
+                  trips.find((trip) => trip.trip_id === selectedTrip)?.city ||
+                  ""
+                }
+                stateOrCountry={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.state_or_country || ""
+                }
+                startDate={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.start_date || ""
+                }
+                endDate={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.end_date || ""
+                }
               />
             )}
           </>

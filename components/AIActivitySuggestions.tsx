@@ -21,11 +21,15 @@ export default function AIActivitySuggestions({
   endDate,
 }: AIActivitySuggestionsProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ role: "user" | "assistant"; content: string }[]>([]);
+  const [messages, setMessages] = useState<
+    { role: "user" | "assistant"; content: string }[]
+  >([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || "");
+  const genAI = new GoogleGenerativeAI(
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY || "",
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,7 +42,7 @@ export default function AIActivitySuggestions({
 
     try {
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-      
+
       const prompt = `You are a travel planning assistant. The user is planning a trip to ${city}, ${stateOrCountry} from ${startDate} to ${endDate}. 
       Please provide helpful suggestions and recommendations based on their query: ${userMessage}
       Focus on providing specific, actionable suggestions that would be relevant for their trip.`;
@@ -52,7 +56,10 @@ export default function AIActivitySuggestions({
       console.error("Error generating response:", error);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry, I encountered an error. Please try again." },
+        {
+          role: "assistant",
+          content: "Sorry, I encountered an error. Please try again.",
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -107,4 +114,4 @@ export default function AIActivitySuggestions({
       )}
     </div>
   );
-} 
+}
