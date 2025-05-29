@@ -15,19 +15,27 @@ jest.mock("../../../utils/supabase/server", () => ({
 }));
 
 jest.mock("../../../utils/utils", () => ({
-  encodedRedirect: jest.fn().mockImplementation((type, path, message) => `${type}:${path}:${message}`),
+  encodedRedirect: jest
+    .fn()
+    .mockImplementation((type, path, message) => `${type}:${path}:${message}`),
 }));
 
 // Mock Next.js components and hooks
 jest.mock("next/link", () => ({
   __esModule: true,
-  default: ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href}>{children}</a>
-  ),
+  default: ({
+    children,
+    href,
+  }: {
+    children: React.ReactNode;
+    href: string;
+  }) => <a href={href}>{children}</a>,
 }));
 
 jest.mock("next/headers", () => ({
-  headers: jest.fn().mockReturnValue(new Map([["origin", "http://localhost:3000"]])),
+  headers: jest
+    .fn()
+    .mockReturnValue(new Map([["origin", "http://localhost:3000"]])),
 }));
 
 describe("Sign Up Page", () => {
@@ -51,7 +59,11 @@ describe("Sign Up Page", () => {
   });
 
   it("renders sign up form with all required fields", async () => {
-    render(await Signup({ searchParams: Promise.resolve({ message: "" } as Message) }));
+    render(
+      await Signup({
+        searchParams: Promise.resolve({ message: "" } as Message),
+      }),
+    );
 
     // Check heading and description
     expect(screen.getByText("Create Account")).toBeInTheDocument();
@@ -74,7 +86,7 @@ describe("Sign Up Page", () => {
         searchParams: Promise.resolve({
           error: errorMessage,
         } as Message),
-      })
+      }),
     );
 
     expect(screen.getByText(errorMessage)).toBeInTheDocument();
@@ -91,7 +103,11 @@ describe("Sign Up Page", () => {
       insert: jest.fn().mockResolvedValue({ error: null }),
     });
 
-    render(await Signup({ searchParams: Promise.resolve({ message: "" } as Message) }));
+    render(
+      await Signup({
+        searchParams: Promise.resolve({ message: "" } as Message),
+      }),
+    );
 
     // Fill in the form
     fireEvent.change(screen.getByLabelText("Email"), {
@@ -134,7 +150,11 @@ describe("Sign Up Page", () => {
       error: { message: errorMessage },
     });
 
-    render(await Signup({ searchParams: Promise.resolve({ message: "" } as Message) }));
+    render(
+      await Signup({
+        searchParams: Promise.resolve({ message: "" } as Message),
+      }),
+    );
 
     // Fill in the form
     fireEvent.change(screen.getByLabelText("Email"), {
@@ -157,7 +177,7 @@ describe("Sign Up Page", () => {
     expect(encodedRedirect).toHaveBeenCalledWith(
       "error",
       "/sign-up",
-      errorMessage
+      errorMessage,
     );
   });
 
@@ -174,7 +194,11 @@ describe("Sign Up Page", () => {
       }),
     });
 
-    render(await Signup({ searchParams: Promise.resolve({ message: "" } as Message) }));
+    render(
+      await Signup({
+        searchParams: Promise.resolve({ message: "" } as Message),
+      }),
+    );
 
     // Fill in the form
     fireEvent.change(screen.getByLabelText("Email"), {
@@ -197,26 +221,37 @@ describe("Sign Up Page", () => {
     expect(encodedRedirect).toHaveBeenCalledWith(
       "error",
       "/sign-up",
-      "Failed to save user info."
+      "Failed to save user info.",
     );
   });
 
   it("applies correct styling classes", async () => {
-    render(await Signup({ searchParams: Promise.resolve({ message: "" } as Message) }));
+    render(
+      await Signup({
+        searchParams: Promise.resolve({ message: "" } as Message),
+      }),
+    );
 
     // Check main container
     const mainContainer = screen.getByRole("generic", { hidden: true });
-    expect(mainContainer).toHaveClass("min-h-screen", "flex", "items-center", "justify-center");
+    expect(mainContainer).toHaveClass(
+      "min-h-screen",
+      "flex",
+      "items-center",
+      "justify-center",
+    );
 
     // Check form container
-    const formContainer = screen.getByRole("generic", { hidden: true }).querySelector(".bg-trip-brown-200");
+    const formContainer = screen
+      .getByRole("generic", { hidden: true })
+      .querySelector(".bg-trip-brown-200");
     expect(formContainer).toHaveClass(
       "bg-trip-brown-200",
       "p-8",
       "rounded-xl",
       "w-[32rem]",
       "shadow-lg",
-      "font-trip-main"
+      "font-trip-main",
     );
 
     // Check submit button
@@ -231,7 +266,7 @@ describe("Sign Up Page", () => {
       "font-semibold",
       "hover:bg-[#cbb192]",
       "hover:scale-105",
-      "transition"
+      "transition",
     );
   });
-}); 
+});

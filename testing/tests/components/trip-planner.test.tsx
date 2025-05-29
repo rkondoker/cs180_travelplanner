@@ -94,7 +94,12 @@ describe("TripPlanner Page", () => {
     mockSupabase.from.mockReturnValue({
       select: jest.fn().mockReturnThis(),
       eq: jest.fn().mockReturnThis(),
-      single: jest.fn().mockResolvedValue({ data: null, error: new Error("Failed to fetch trip") }),
+      single: jest
+        .fn()
+        .mockResolvedValue({
+          data: null,
+          error: new Error("Failed to fetch trip"),
+        }),
     });
 
     render(await TripPlanner({ searchParams: { edit: "trip1" } }));
@@ -122,7 +127,7 @@ describe("TripPlanner Page", () => {
       "bg-trip-brown-100",
       "rounded-xl",
       "p-8",
-      "font-trip-main"
+      "font-trip-main",
     );
 
     // Check form
@@ -134,7 +139,7 @@ describe("TripPlanner Page", () => {
       "items-stretch",
       "w-full",
       "text-3xl",
-      "font-trip-main"
+      "font-trip-main",
     );
 
     // Check submit button
@@ -152,7 +157,7 @@ describe("TripPlanner Page", () => {
       "font-semibold",
       "hover:scale-105",
       "hover:bg-trip-blue-200",
-      "transition"
+      "transition",
     );
   });
 
@@ -169,4 +174,4 @@ describe("TripPlanner Page", () => {
     expect(hiddenInput).toHaveAttribute("name", "edit_id");
     expect(hiddenInput).toHaveAttribute("value", "trip1");
   });
-}); 
+});

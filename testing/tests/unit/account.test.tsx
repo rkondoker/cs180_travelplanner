@@ -43,7 +43,9 @@ describe("Account Page", () => {
     });
 
     await AccountPage();
-    expect(require("next/navigation").redirect).toHaveBeenCalledWith("/sign-in");
+    expect(require("next/navigation").redirect).toHaveBeenCalledWith(
+      "/sign-in",
+    );
   });
 
   it("displays error message when user details fetch fails", async () => {
@@ -65,7 +67,9 @@ describe("Account Page", () => {
 
     render(await AccountPage());
 
-    expect(screen.getByText(`Error fetching user details: ${errorMessage}`)).toBeInTheDocument();
+    expect(
+      screen.getByText(`Error fetching user details: ${errorMessage}`),
+    ).toBeInTheDocument();
   });
 
   it("displays user information and weather data", async () => {
@@ -101,7 +105,9 @@ describe("Account Page", () => {
     // Check weather information
     expect(screen.getByText("Weather: Sunny")).toBeInTheDocument();
     expect(screen.getByText("Temperature: 75°F")).toBeInTheDocument();
-    expect(screen.getByText("Location: Riverside, California")).toBeInTheDocument();
+    expect(
+      screen.getByText("Location: Riverside, California"),
+    ).toBeInTheDocument();
   });
 
   it("applies correct styling classes", async () => {
@@ -134,11 +140,13 @@ describe("Account Page", () => {
       "justify-center",
       "bg-trip-blue-100",
       "text-white",
-      "p-6"
+      "p-6",
     );
 
     // Check content container
-    const contentContainer = screen.getByRole("generic", { hidden: true }).querySelector(".bg-trip-brown-200");
+    const contentContainer = screen
+      .getByRole("generic", { hidden: true })
+      .querySelector(".bg-trip-brown-200");
     expect(contentContainer).toHaveClass(
       "bg-trip-brown-200",
       "text-white",
@@ -147,11 +155,11 @@ describe("Account Page", () => {
       "p-8",
       "w-full",
       "max-w-md",
-      "space-y-6"
+      "space-y-6",
     );
 
     // Check heading
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).toHaveClass("text-2xl", "font-bold", "border-b", "pb-2");
   });
-}); 
+});

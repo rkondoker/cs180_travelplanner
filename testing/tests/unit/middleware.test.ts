@@ -35,9 +35,15 @@ global.Response = jest.fn().mockImplementation((body, init) => ({
 })) as any;
 
 // Add static methods
-(global.Response as any).error = jest.fn().mockReturnValue(new Response(null, { status: 500 }));
-(global.Response as any).json = jest.fn().mockReturnValue(new Response(null, { status: 200 }));
-(global.Response as any).redirect = jest.fn().mockReturnValue(new Response(null, { status: 302 }));
+(global.Response as any).error = jest
+  .fn()
+  .mockReturnValue(new Response(null, { status: 500 }));
+(global.Response as any).json = jest
+  .fn()
+  .mockReturnValue(new Response(null, { status: 200 }));
+(global.Response as any).redirect = jest
+  .fn()
+  .mockReturnValue(new Response(null, { status: 302 }));
 
 describe("Middleware", () => {
   beforeEach(() => {
@@ -48,7 +54,7 @@ describe("Middleware", () => {
     it("calls updateSession with the request", async () => {
       // Create a mock request
       const mockRequest = new NextRequest("http://localhost:3000");
-      
+
       // Mock the updateSession response
       const mockResponse = new Response();
       (updateSession as jest.Mock).mockResolvedValue(mockResponse);
@@ -64,19 +70,21 @@ describe("Middleware", () => {
     it("handles updateSession errors gracefully", async () => {
       // Create a mock request
       const mockRequest = new NextRequest("http://localhost:3000");
-      
+
       // Mock updateSession to throw an error
       const mockError = new Error("Session update failed");
       (updateSession as jest.Mock).mockRejectedValue(mockError);
 
       // Call the middleware and expect it to throw
-      await expect(middleware(mockRequest)).rejects.toThrow("Session update failed");
+      await expect(middleware(mockRequest)).rejects.toThrow(
+        "Session update failed",
+      );
     });
 
     it("passes through the response from updateSession", async () => {
       // Create a mock request
       const mockRequest = new NextRequest("http://localhost:3000");
-      
+
       // Create a mock response with specific properties
       const mockResponse = new Response(null, {
         status: 302,
@@ -101,14 +109,14 @@ describe("Middleware", () => {
       // Verify the matcher pattern
       expect(config.matcher).toHaveLength(1);
       expect(config.matcher[0]).toBe(
-        "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"
+        "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
       );
     });
 
     it("matches application routes", () => {
       const { config } = require("../../../middleware");
       const matcherPattern = new RegExp(config.matcher[0]);
-      
+
       // Test various application routes
       const routes = [
         "/",
@@ -121,7 +129,7 @@ describe("Middleware", () => {
         "/auth/signout",
       ];
 
-      routes.forEach(route => {
+      routes.forEach((route) => {
         expect(matcherPattern.test(route)).toBe(true);
       });
     });
@@ -129,7 +137,7 @@ describe("Middleware", () => {
     it("excludes static and media files", () => {
       const { config } = require("../../../middleware");
       const matcherPattern = new RegExp(config.matcher[0]);
-      
+
       // Test various static and media files
       const staticFiles = [
         "/_next/static/abc123",
@@ -144,7 +152,7 @@ describe("Middleware", () => {
         "/public/favicon.ico",
       ];
 
-      staticFiles.forEach(file => {
+      staticFiles.forEach((file) => {
         expect(matcherPattern.test(file)).toBe(false);
       });
     });
@@ -152,11 +160,11 @@ describe("Middleware", () => {
     it("handles query parameters correctly", () => {
       const { config } = require("../../../middleware");
       const matcherPattern = new RegExp(config.matcher[0]);
-      
+
       // Test URLs with query parameters
       expect(matcherPattern.test("/my-trips?filter=active")).toBe(true);
       expect(matcherPattern.test("/trip-planner?edit=trip123")).toBe(true);
       expect(matcherPattern.test("/_next/image?url=abc123")).toBe(false);
     });
   });
-}); 
+});
