@@ -52,8 +52,13 @@ export default async function TripPlanner({
     >
       <form className="flex flex-col w-11/12 items-stretch w-full text-3xl font-trip-main">
         {editId ? "Edit Trip" : "Create Trip"}
+      </h1>
+      <form
+        action={createTripAction}
+        className="flex flex-col w-11/12 items-stretch w-full text-xl gap-2"
+      >
         {editId && <input type="hidden" name="edit_id" value={editId} />}
-        <div className="flex flex-col text-xl gap-2 mt-8">
+        <div className="flex flex-col gap-4">
           {fields.map(({ label, name, type, placeholder }) => (
             <div
               key={name}
@@ -61,9 +66,10 @@ export default async function TripPlanner({
             >
               <Label htmlFor={name}>{label}</Label>
               <input
-                className="px-3 w-full rounded-xl"
+                className="px-3 py-2 w-full rounded-xl"
                 type={type}
                 name={name}
+                id={name}
                 placeholder={placeholder}
                 defaultValue={tripData?.[name] || ""}
                 required
@@ -71,11 +77,10 @@ export default async function TripPlanner({
             </div>
           ))}
         </div>
-        <div className="flex justify-center items-center mt-5">
+        <div className="flex justify-center items-center mt-8">
           <SubmitButton
             pendingText={editId ? "Updating Trip..." : "Creating Trip..."}
-            formAction={createTripAction}
-            className="bg-trip-blue-200 w-1/5 justify-center mt-5 items-center text-trip-brown-100 px-16 py-2 rounded-full font-semibold hover:scale-105 hover:bg-trip-blue-200 transition"
+            className="bg-trip-blue-200 justify-center items-center text-trip-brown-100 px-16 py-2 rounded-full font-semibold hover:scale-105 hover:bg-trip-blue-200 transition"
           >
             {editId ? "Update Trip" : "Create Trip"}
           </SubmitButton>
