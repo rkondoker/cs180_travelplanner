@@ -46,8 +46,11 @@ export default async function TripPlanner({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center m-10 w-3/4 bg-trip-brown-100 rounded-xl p-8 font-trip-main">
-      <h1 className="text-3xl font-bold mb-6">
+    <div
+      data-testid="trip-planner-container"
+      className="flex flex-col items-center justify-center m-10 w-3/4 bg-trip-brown-100 rounded-xl p-8 font-trip-main"
+    >
+      <form className="flex flex-col w-11/12 items-stretch w-full text-3xl font-trip-main">
         {editId ? "Edit Trip" : "Create Trip"}
       </h1>
       <form

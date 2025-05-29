@@ -1,7 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-import { handleWeather, LocationInfo } from "@/utils/weather/handleWeather";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -13,13 +12,6 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect("/sign-in");
   }
-
-  const location: LocationInfo = {
-    city: "Riverside",
-    stateOrCountry: "California",
-  };
-
-  const weatherData = await handleWeather(location);
 
   const { data: userInformation, error } = await supabase
     .from("users")
@@ -55,13 +47,6 @@ export default async function ProtectedPage() {
             <strong>Joined on:</strong>{" "}
             {new Date(joined_on).toLocaleDateString()}
           </p>
-          <p> Weather: {weatherData?.condition}</p>
-          <p> Temperature: {weatherData?.temperature}°F</p>
-          <p>
-            {" "}
-            Location: {location.city}, {location.stateOrCountry}
-          </p>
-          {weatherData?.icon && <weatherData.icon size={48} />}
         </div>
       </div>
     </div>

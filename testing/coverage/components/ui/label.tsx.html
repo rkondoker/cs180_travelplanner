@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/7</span>
+            <span class="fraction">7/7</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -41,9 +41,9 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/7</span>
+            <span class="fraction">7/7</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -87,15 +87,13 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,18 +106,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use client";
 &nbsp;
-import * as React from <span class="cstat-no" title="statement not covered" >"react";</span>
-import * as LabelPrimitive from <span class="cstat-no" title="statement not covered" >"@radix-ui/react-label";</span>
-import { cva, type VariantProps } from <span class="cstat-no" title="statement not covered" >"class-variance-authority";</span>
+import * as React from "react";
+import * as LabelPrimitive from "@radix-ui/react-label";
+import { cva, type VariantProps } from "class-variance-authority";
 &nbsp;
-import { cn } from <span class="cstat-no" title="statement not covered" >"@/lib/utils";</span>
+import { cn } from "@/lib/utils";
 &nbsp;
-const labelVariants = <span class="cstat-no" title="statement not covered" >cva(</span>
+const labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 );
 &nbsp;
@@ -134,9 +134,9 @@ const Label = React.forwardRef&lt;
     {...props}
   /&gt;
 ));
-<span class="cstat-no" title="statement not covered" >Label.displayName = LabelPrimitive.Root.displayName;</span>
+Label.displayName = LabelPrimitive.Root.displayName;
 &nbsp;
-export { <span class="cstat-no" title="statement not covered" >Label };</span>
+export { Label };
 &nbsp;</pre></td></tr></table></pre>
 
       <div class="push"></div>
@@ -151,7 +151,7 @@ export { <span class="cstat-no" title="statement not covered" >Label };</span>
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T04:38:47.758Z
+      at 2025-05-29T20:43:29.110Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

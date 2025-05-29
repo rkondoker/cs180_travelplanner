@@ -142,7 +142,10 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,6 +183,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,7 +279,10 @@ export default async function <span class="cstat-no" title="statement not covere
   }
 &nbsp;
   return (
-    &lt;div className="flex flex-col items-center justify-center m-10 w-3/4 bg-trip-brown-100 rounded-xl p-8 font-trip-main"&gt;
+    &lt;div
+      data-testid="trip-planner-container"
+      className="flex flex-col items-center justify-center m-10 w-3/4 bg-trip-brown-100 rounded-xl p-8 font-trip-main"
+    &gt;
       &lt;form className="flex flex-col w-11/12 items-stretch w-full text-3xl font-trip-main"&gt;
         {editId ? "Edit Trip" : "Create Trip"}
         {<span class="branch-0 cbranch-no" title="branch not covered" >editId &amp;&amp; &lt;</span>input type="hidden" name="edit_id" value={editId} /&gt;}
@@ -322,7 +331,7 @@ export default async function <span class="cstat-no" title="statement not covere
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T04:38:47.714Z
+      at 2025-05-29T20:43:28.948Z
     </div>
     <script src="../../prettify.js"></script>
     <script>
