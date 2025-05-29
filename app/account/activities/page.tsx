@@ -6,6 +6,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AIActivitySuggestions from "@/components/AIActivitySuggestions";
 
 type Trip = {
   trip_id: string;
@@ -200,100 +201,126 @@ export default function ActivitiesPage() {
         </div>
 
         {selectedTrip && (
-          <form className="space-y-4" action={handleActivitySubmit}>
-            <div>
-              <Label htmlFor="activity-name" className="text-white mb-2 block">
-                Activity Name
-              </Label>
-              <input
-                id="activity-name"
-                name="activity-name"
-                type="text"
-                required
-                className="w-full px-3 py-2 rounded bg-white text-black"
-                placeholder="e.g., Visit Golden Gate Bridge"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description" className="text-white mb-2 block">
-                Description
-              </Label>
-              <textarea
-                id="description"
-                name="description"
-                required
-                className="w-full px-3 py-2 rounded bg-white text-black"
-                placeholder="Describe your activity..."
-                rows={3}
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="date" className="text-white mb-2 block">
-                Date
-              </Label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                required
-                className="w-full px-3 py-2 rounded bg-white text-black"
-              />
-            </div>
-
-            {location.map(({ name, type, label, placeholder }, index) => (
-              <div key={index}>
-                <Label htmlFor={name} className="text-white mb-2 block">
-                  {label}
-                </Label>
-                <input
-                  id={name}
-                  name={name}
-                  type={type}
-                  required
-                  className="w-full px-3 py-2 rounded bg-white text-black"
-                  placeholder={placeholder}
-                />
-              </div>
-            ))}
-            <div className="grid grid-cols-2 gap-4">
+          <>
+            <form className="space-y-4" action={handleActivitySubmit}>
               <div>
-                <Label htmlFor="start-time" className="text-white mb-2 block">
-                  Start Time
+                <Label
+                  htmlFor="activity-name"
+                  className="text-white mb-2 block"
+                >
+                  Activity Name
                 </Label>
                 <input
-                  id="start-time"
-                  name="start-time"
-                  type="time"
+                  id="activity-name"
+                  name="activity-name"
+                  type="text"
                   required
                   className="w-full px-3 py-2 rounded bg-white text-black"
+                  placeholder="e.g., Visit Golden Gate Bridge"
                 />
               </div>
 
               <div>
-                <Label htmlFor="end-time" className="text-white mb-2 block">
-                  End Time
+                <Label htmlFor="description" className="text-white mb-2 block">
+                  Description
+                </Label>
+                <textarea
+                  id="description"
+                  name="description"
+                  required
+                  className="w-full px-3 py-2 rounded bg-white text-black"
+                  placeholder="Describe your activity..."
+                  rows={3}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="date" className="text-white mb-2 block">
+                  Date
                 </Label>
                 <input
-                  id="end-time"
-                  name="end-time"
-                  type="time"
+                  id="date"
+                  name="date"
+                  type="date"
                   required
                   className="w-full px-3 py-2 rounded bg-white text-black"
                 />
               </div>
-            </div>
 
-            <div className="flex justify-center mt-6">
-              <SubmitButton
-                pendingText="Creating Activity..."
-                className="bg-trip-brown-100 text-trip-brown-200 px-8 py-2 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition"
-              >
-                Add Activity
-              </SubmitButton>
-            </div>
-          </form>
+              {location.map(({ name, type, label, placeholder }, index) => (
+                <div key={index}>
+                  <Label htmlFor={name} className="text-white mb-2 block">
+                    {label}
+                  </Label>
+                  <input
+                    id={name}
+                    name={name}
+                    type={type}
+                    required
+                    className="w-full px-3 py-2 rounded bg-white text-black"
+                    placeholder={placeholder}
+                  />
+                </div>
+              ))}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="start-time" className="text-white mb-2 block">
+                    Start Time
+                  </Label>
+                  <input
+                    id="start-time"
+                    name="start-time"
+                    type="time"
+                    required
+                    className="w-full px-3 py-2 rounded bg-white text-black"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="end-time" className="text-white mb-2 block">
+                    End Time
+                  </Label>
+                  <input
+                    id="end-time"
+                    name="end-time"
+                    type="time"
+                    required
+                    className="w-full px-3 py-2 rounded bg-white text-black"
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-center mt-6">
+                <SubmitButton
+                  pendingText="Creating Activity..."
+                  className="bg-trip-brown-100 text-trip-brown-200 px-8 py-2 rounded-full font-semibold hover:bg-[#cbb192] hover:scale-105 transition"
+                >
+                  Add Activity
+                </SubmitButton>
+              </div>
+            </form>
+
+            {trips.find((trip) => trip.trip_id === selectedTrip) && (
+              <AIActivitySuggestions
+                city={
+                  trips.find((trip) => trip.trip_id === selectedTrip)?.city ||
+                  ""
+                }
+                stateOrCountry={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.state_or_country || ""
+                }
+                startDate={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.start_date || ""
+                }
+                endDate={
+                  trips.find((trip) => trip.trip_id === selectedTrip)
+                    ?.end_date || ""
+                }
+              />
+            )}
+          </>
         )}
       </div>
     </div>
