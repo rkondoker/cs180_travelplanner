@@ -107,16 +107,28 @@ export default function ActivitiesPage() {
         return;
       }
 
+      // Validate required address fields
+      const street_address = formData.get("street_address");
+      const city = formData.get("city");
+      const state = formData.get("state");
+      const postal_code = formData.get("postal_code");
+      const country = formData.get("country");
+
+      if (!street_address || !city || !state || !postal_code || !country) {
+        setError("Please fill in all address fields");
+        return;
+      }
+
       const activityData = {
         trip_id: selectedTrip,
         name: formData.get("activity-name"),
         description: formData.get("description"),
         date: formData.get("date"),
-        street_address: formData.get("street_address"),
-        city: formData.get("city"),
-        state: formData.get("state"),
-        postal_code: formData.get("postal_code"),
-        country: formData.get("country"),
+        street_address,
+        city,
+        state,
+        postal_code,
+        country,
         start_time: formData.get("start-time"),
         end_time: formData.get("end-time"),
       };
@@ -129,23 +141,31 @@ export default function ActivitiesPage() {
         country: activityData.country as string,
       };
 
-      const coordinates = await getCoordinates(address);
+      try {
+        const coordinates = await getCoordinates(address);
+        
+        // Now get the data ready to submit
+        const fullData = {
+          ...activityData,
+          latitude: coordinates.latitude,
+          longitude: coordinates.longitude,
+        };
 
-      // Now get the data ready to submit
-      const fullData = {
-        ...activityData,
-        latitude: coordinates.latitude,
-        longitude: coordinates.longitude,
-      };
+        const { error } = await supabase.from("activities").insert([fullData]);
 
-      const { error } = await supabase.from("activities").insert([fullData]);
-
-      if (error) {
-        setError("Error creating activity: " + error.message);
-      } else {
-        // Reset form and show success message
-        setSelectedTrip("");
-        router.refresh();
+        if (error) {
+          setError("Error creating activity: " + error.message);
+        } else {
+          // Reset form and show success message
+          setSelectedTrip("");
+          router.refresh();
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(`Error getting coordinates: ${error.message}`);
+        } else {
+          setError("Error getting coordinates for the address");
+        }
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -272,6 +292,7 @@ export default function ActivitiesPage() {
                     id={name}
                     name={name}
                     type={type}
+                    required
                     className="w-full px-3 py-2 rounded bg-white text-black"
                     placeholder={placeholder}
                   />
