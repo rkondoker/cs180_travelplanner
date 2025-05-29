@@ -23,27 +23,27 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/1</span>
+            <span class="fraction">1/1</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">0/3</span>
+            <span class="fraction">3/3</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/1</span>
+            <span class="fraction">1/1</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/1</span>
+            <span class="fraction">1/1</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,7 +88,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -112,20 +112,20 @@
   | { error: string }
   | { message: string };
 &nbsp;
-export function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >FormMessage({</span></span> message }: { message: Message }) {
+export function FormMessage({ message }: { message: Message }) {
   return (
     &lt;div className="flex flex-col gap-2 w-full max-w-md text-sm"&gt;
-      {<span class="branch-0 cbranch-no" title="branch not covered" >"success" in message &amp;&amp; (</span>
+      {"success" in message &amp;&amp; (
         &lt;div className="text-foreground border-l-2 border-foreground px-4"&gt;
           {message.success}
         &lt;/div&gt;
       )}
-      {<span class="branch-0 cbranch-no" title="branch not covered" >"error" in message &amp;&amp; (</span>
+      {"error" in message &amp;&amp; (
         &lt;div className="text-destructive-foreground border-l-2 border-destructive-foreground px-4"&gt;
           {message.error}
         &lt;/div&gt;
       )}
-      {<span class="branch-0 cbranch-no" title="branch not covered" >"message" in message &amp;&amp; (</span>
+      {"message" in message &amp;&amp; (
         &lt;div className="text-foreground border-l-2 px-4"&gt;{message.message}&lt;/div&gt;
       )}
     &lt;/div&gt;
@@ -145,7 +145,7 @@ export function <span class="cstat-no" title="statement not covered" ><span clas
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T16:38:54.553Z
+      at 2025-05-29T20:43:28.948Z
     </div>
     <script src="../prettify.js"></script>
     <script>
