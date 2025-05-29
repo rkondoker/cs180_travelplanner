@@ -1,10 +1,11 @@
+"use client";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { deleteTrip } from "@/app/actions";
-import { LocationInfo } from "@/utils/weather/handleWeather";
-import { handleWeather } from "@/utils/weather/handleWeather";
+import Activity from "@/components/my-trips/activities";
 
-interface Activity {
+interface ActivityProps {
   id: string;
   trip_id: string;
   name: string;
@@ -19,7 +20,7 @@ type TripProps = {
   end_date: string;
   city: string;
   state_or_country: string;
-  activities?: Activity[];
+  activities?: ActivityProps[];
 };
 
 function addOneDay(dateString: string): string {
@@ -32,7 +33,7 @@ function addOneDay(dateString: string): string {
   });
 }
 
-export default async function Trip({
+export default function Trip({
   trip_id,
   title,
   start_date,
@@ -41,15 +42,9 @@ export default async function Trip({
   state_or_country,
   activities = [],
 }: TripProps) {
+  const [showActivities, setShowActivities] = useState(false);
   const formattedStart = addOneDay(start_date);
   const formattedEnd = addOneDay(end_date);
-
-  const location: LocationInfo = {
-    city: city,
-    stateOrCountry: state_or_country,
-  };
-
-  const weatherData = await handleWeather(location);
 
   return (
     <div className="bg-trip-brown-100 rounded-xl p-6 w-full text-white font-trip-main">
@@ -57,9 +52,6 @@ export default async function Trip({
         <h2 className="text-2xl font-bold">
           {title} – {city}, {state_or_country}
         </h2>
-        <p> Weather: {weatherData?.condition}</p>
-        <p> Temperature: {weatherData?.temperature}°F</p>
-        {weatherData?.icon && <weatherData.icon size={48} />}
         <p className="text-sm mt-1">
           {formattedStart} – {formattedEnd}
         </p>
@@ -69,32 +61,32 @@ export default async function Trip({
         Map here
       </div>
 
-      <div className="mt-6 text-sm">
+      <div className="mt-6 text-sm w-full">
         <span className="font-bold">Activities:</span>
-        <div className="relative group inline-block ml-2">
+        <div className="inline-block ml-2">
           <button
-            className="text-trip-brown-200 hover:text-trip-brown-100 flex items-center gap-1"
-            aria-label="Show activities"
+            onClick={() => setShowActivities((prev) => !prev)}
+            className="text-trip-brown-200 hover:text-white flex items-center gap-1"
+            aria-label="Toggle activities"
           >
             View Activities
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className={`h-4 w-4 transform transition-transform ${showActivities ? "rotate-180" : ""}`} />
           </button>
-          <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-            {activities.length > 0 ? (
-              activities.map((activity) => (
-                <div
-                  key={activity.id}
-                  className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  {activity.name}
+          {showActivities && (
+            <div className="mt-2 w-full bg-white rounded-md shadow-lg py-1 z-10">
+              {activities.length > 0 ? (
+                activities.map(({ id, trip_id, name, description, date }, index) => (
+                  <div key={index} className="w-full">
+                    <Activity key={index} id={id} trip_id={trip_id} name={name} description={description} date={date}/>
+                  </div>
+                ))
+              ) : (
+                <div className="px-4 py-2 text-sm text-gray-500">
+                  No activities yet
                 </div>
-              ))
-            ) : (
-              <div className="px-4 py-2 text-sm text-gray-500">
-                No activities yet
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

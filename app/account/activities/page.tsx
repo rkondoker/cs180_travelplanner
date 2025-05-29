@@ -272,7 +272,6 @@ export default function ActivitiesPage() {
                     id={name}
                     name={name}
                     type={type}
-                    required
                     className="w-full px-3 py-2 rounded bg-white text-black"
                     placeholder={placeholder}
                   />

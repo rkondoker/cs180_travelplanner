@@ -69,7 +69,7 @@ export default async function MyTrips() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
+      <div className="w-full flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-trip-brown-200 mb-8 text-center">
           My Trips
         </h1>
@@ -77,10 +77,13 @@ export default async function MyTrips() {
         {}
         {!trips || trips.length === 0 ? (
           // When no trip exists
-          <div className="flex flex-col items-center justify-center p-12 bg-trip-brown-100 rounded-xl">
+          <div className="flex flex-col items-center justify-center p-12 bg-trip-brown-100 rounded-xl w-1/2">
             <p className="text-2xl text-trip-brown-200 font-semibold mb-6">
               No trips here! Would you like to make one?
             </p>
+            <Link href="/trip-planner" className="bg-trip-brown-200 text-trip-brown-100 px-8 py-3 rounded-full font-semibold hover:scale-105 hover:bg-trip-brown-200 transition shadow-lg">
+              Yes, Create Trip
+            </Link>
           </div>
         ) : (
           // Display list of trips if they exist
