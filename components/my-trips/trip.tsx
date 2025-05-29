@@ -1,6 +1,8 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { deleteTrip } from "@/app/actions";
+import { LocationInfo } from "@/utils/weather/handleWeather";
+import { handleWeather } from "@/utils/weather/handleWeather";
 
 interface Activity {
   id: string;
@@ -30,7 +32,7 @@ function addOneDay(dateString: string): string {
   });
 }
 
-export default function Trip({
+export default async function Trip({
   trip_id,
   title,
   start_date,
@@ -42,12 +44,22 @@ export default function Trip({
   const formattedStart = addOneDay(start_date);
   const formattedEnd = addOneDay(end_date);
 
+  const location: LocationInfo = {
+    city: city,
+    stateOrCountry: state_or_country,
+  };
+
+  const weatherData = await handleWeather(location);
+
   return (
     <div className="bg-trip-brown-100 rounded-xl p-6 w-full text-white font-trip-main">
       <div className="mb-4">
         <h2 className="text-2xl font-bold">
           {title} – {city}, {state_or_country}
         </h2>
+        <p> Weather: {weatherData?.condition}</p>
+        <p> Temperature: {weatherData?.temperature}°F</p>
+        {weatherData?.icon && <weatherData.icon size={48} />}
         <p className="text-sm mt-1">
           {formattedStart} – {formattedEnd}
         </p>
