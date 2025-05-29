@@ -9,7 +9,10 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen font-trip-main relative">
       <div className="bg-trip-brown-200 rounded-xl p-8 shadow-lg w-125">
-        <form className="flex flex-col min-w-64 items-center justify-center">
+        <form
+          className="flex flex-col min-w-64 items-center justify-center"
+          data-testid="login-form"
+        >
           <h1 className="text-3xl font-bold mb-2 text-white font-trip-main">
             Log in
           </h1>
