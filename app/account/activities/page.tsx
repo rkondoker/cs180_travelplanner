@@ -6,6 +6,7 @@ import { SubmitButton } from "@/components/submit-button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import getCoordinates from "@/utils/coordinates/getCoordinates";
 import AIActivitySuggestions from "@/components/AIActivitySuggestions";
 
 type Trip = {
@@ -120,9 +121,24 @@ export default function ActivitiesPage() {
         end_time: formData.get("end-time"),
       };
 
-      const { error } = await supabase
-        .from("activities")
-        .insert([activityData]);
+      const address = {
+        street_address: activityData.street_address as string,
+        city: activityData.city as string,
+        state: activityData.state as string,
+        postal_code: activityData.postal_code as string,
+        country: activityData.country as string,
+      };
+
+      const coordinates = await getCoordinates(address);
+
+      // Now get the data ready to submit
+      const fullData = {
+        ...activityData,
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude,
+      };
+
+      const { error } = await supabase.from("activities").insert([fullData]);
 
       if (error) {
         setError("Error creating activity: " + error.message);
