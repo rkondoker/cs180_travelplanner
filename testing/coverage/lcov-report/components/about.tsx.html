@@ -120,7 +120,8 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,7 +135,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -180,15 +181,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use client";
 import Image from "next/image";
 import teamMembers from "@/app/data/Members/members";
 &nbsp;
 const About = () =&gt; {
   return (
-    &lt;div className="min-h-screen w-full bg-gradient-to-b from-blue-400 to-green-600"&gt;
-      &lt;section className="min-h-[600px] py-16 bg-white/5 flex flex-col justify-center"&gt;
+    &lt;div data-testid="about-container" className="min-h-screen w-full bg-gradient-to-b from-blue-400 to-green-600"&gt;
+      &lt;section data-testid="team-section" className="min-h-[600px] py-16 bg-white/5 flex flex-col justify-center"&gt;
         &lt;div className="container mx-auto px-8"&gt;
           &lt;h2 className="text-3xl font-bold text-center text-white mb-12"&gt;
             Meet Our Team
@@ -197,6 +199,7 @@ const About = () =&gt; {
             {teamMembers.map((member, index) =&gt; (
               &lt;div
                 key={index}
+                data-testid="team-member-card"
                 className="bg-white/20 p-8 rounded-xl backdrop-blur-sm hover:transform hover:scale-150 transition-transform duration-150"
               &gt;
                 &lt;div className="relative w-48 h-48 mx-auto mb-6 overflow-hidden rounded"&gt;
@@ -217,12 +220,12 @@ const About = () =&gt; {
         &lt;/div&gt;
       &lt;/section&gt;
 &nbsp;
-      &lt;section className="min-h-[600px] py-16 bg-white/10 backdrop-blur-sm flex flex-col justify-center"&gt;
+      &lt;section data-testid="story-section" className="min-h-[600px] py-16 bg-white/10 backdrop-blur-sm flex flex-col justify-center"&gt;
         &lt;div className="container mx-auto px-8 max-w-4xl"&gt;
           &lt;h2 className="text-4xl font-bold text-center text-white mb-12"&gt;
             Our Story
           &lt;/h2&gt;
-          &lt;div className="bg-white/20 p-12 rounded-xl backdrop-blur-sm hover:transform hover:scale-110 transition-transform duration-150"&gt;
+          &lt;div data-testid="story-card" className="bg-white/20 p-12 rounded-xl backdrop-blur-sm hover:transform hover:scale-110 transition-transform duration-150"&gt;
             &lt;p className="text-white/90 text-lg leading-relaxed mb-8"&gt;
               TripWise was born from a simple observation: planning trips can be
               overwhelming and time-consuming. We wanted to create a solution
@@ -256,7 +259,7 @@ export default About;
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T20:43:28.948Z
+      at 2025-06-05T03:02:12.738Z
     </div>
     <script src="../prettify.js"></script>
     <script>

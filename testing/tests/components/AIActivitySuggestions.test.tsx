@@ -141,4 +141,41 @@ describe("AIActivitySuggestions", () => {
     // No messages should be added
     expect(screen.queryByText("Thinking...")).not.toBeInTheDocument();
   });
+
+  it("constructs the prompt correctly with trip details", async () => {
+    const mockGenerateContent = jest.fn().mockResolvedValue({
+      response: {
+        text: jest.fn().mockResolvedValue("Test response"),
+      },
+    });
+
+    (GoogleGenerativeAI as jest.Mock).mockImplementationOnce(() => ({
+      getGenerativeModel: jest.fn().mockReturnValue({
+        generateContent: mockGenerateContent,
+      }),
+    }));
+
+    render(<AIActivitySuggestions {...mockProps} />);
+
+    // Open the panel and submit a message
+    fireEvent.click(screen.getByText("Get AI Activity Suggestions"));
+    const input = screen.getByPlaceholderText(
+      "Ask about activities, attractions, or local tips...",
+    );
+    fireEvent.change(input, {
+      target: { value: "What are some good restaurants?" },
+    });
+    fireEvent.submit(screen.getByRole("form"));
+
+    // Wait for the API call
+    await waitFor(() => {
+      expect(mockGenerateContent).toHaveBeenCalled();
+      const prompt = mockGenerateContent.mock.calls[0][0];
+      expect(prompt).toContain("Los Angeles");
+      expect(prompt).toContain("California");
+      expect(prompt).toContain("2024-03-20");
+      expect(prompt).toContain("2024-03-25");
+      expect(prompt).toContain("What are some good restaurants?");
+    });
+  });
 });

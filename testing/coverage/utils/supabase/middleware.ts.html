@@ -23,27 +23,27 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">60% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/20</span>
+            <span class="fraction">12/20</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">66.66% </span>
             <span class="quiet">Branches</span>
-            <span class="fraction">0/6</span>
+            <span class="fraction">4/6</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">20% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/5</span>
+            <span class="fraction">1/5</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">57.89% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/19</span>
+            <span class="fraction">11/19</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line medium"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,40 +121,21 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -166,16 +147,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,21 +158,46 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createServerClient } from <span class="cstat-no" title="statement not covered" >"@supabase/ssr";</span>
-import { type NextRequest, NextResponse } from <span class="cstat-no" title="statement not covered" >"next/server";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createServerClient } from "@supabase/ssr";
+import { type NextRequest, NextResponse } from "next/server";
 &nbsp;
-export const <span class="cstat-no" title="statement not covered" >updateSession = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a</span>sync (r</span>equest: NextRequest) =&gt; {</span>
+export const updateSession = async (request: NextRequest) =&gt; {
   // This `try/catch` block is only here for the interactive tutorial.
   // Feel free to remove once you have Supabase connected.
-<span class="cstat-no" title="statement not covered" >  try {</span>
+  try {
     // Create an unmodified response
-    let response = <span class="cstat-no" title="statement not covered" >NextResponse.next({</span>
+    let response = NextResponse.next({
       request: {
         headers: request.headers,
       },
     });
 &nbsp;
-    const supabase = <span class="cstat-no" title="statement not covered" >createServerClient(</span>
+    const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
@@ -222,23 +222,23 @@ export const <span class="cstat-no" title="statement not covered" >updateSession
 &nbsp;
     // This will refresh session if expired - required for Server Components
     // https://supabase.com/docs/guides/auth/server-side/nextjs
-    const user = <span class="cstat-no" title="statement not covered" >await supabase.auth.getUser();</span>
+    const user = await supabase.auth.getUser();
 &nbsp;
     // protected routes
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (request.nextUrl.pathname.startsWith("/account") &amp;&amp; user.error) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (request.nextUrl.pathname.startsWith("/account") &amp;&amp; user.error) {
 <span class="cstat-no" title="statement not covered" >      return NextResponse.redirect(new URL("/sign-in", request.url));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (request.nextUrl.pathname === "/" &amp;&amp; !user.error) {</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (request.nextUrl.pathname === "/" &amp;&amp; !user.error) {
 <span class="cstat-no" title="statement not covered" >      return NextResponse.redirect(new URL("/account", request.url));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return response;</span>
+    return response;
   } catch (e) {
     // If you are here, a Supabase client could not be created!
     // This is likely because you have not set up environment variables.
     // Check out http://localhost:3000 for Next Steps.
-<span class="cstat-no" title="statement not covered" >    return NextResponse.next({</span>
+    return NextResponse.next({
       request: {
         headers: request.headers,
       },
@@ -259,7 +259,7 @@ export const <span class="cstat-no" title="statement not covered" >updateSession
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T20:43:29.110Z
+      at 2025-06-05T03:02:12.772Z
     </div>
     <script src="../../prettify.js"></script>
     <script>

@@ -23,9 +23,9 @@
         </h1>
         <div class="clearfix">
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Statements</span>
-            <span class="fraction">0/7</span>
+            <span class="fraction">7/7</span>
           </div>
 
           <div class="fl pad1y space-right2">
@@ -35,15 +35,15 @@
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Functions</span>
-            <span class="fraction">0/1</span>
+            <span class="fraction">1/1</span>
           </div>
 
           <div class="fl pad1y space-right2">
-            <span class="strong">0% </span>
+            <span class="strong">100% </span>
             <span class="quiet">Lines</span>
-            <span class="fraction">0/7</span>
+            <span class="fraction">7/7</span>
           </div>
         </div>
         <p class="quiet">
@@ -57,7 +57,7 @@
           </div>
         </template>
       </div>
-      <div class="status-line low"></div>
+      <div class="status-line high"></div>
       <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -118,16 +118,14 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,14 +175,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { signInAction } from <span class="cstat-no" title="statement not covered" >"@/app/actions";</span>
-import { FormMessage, Message } from <span class="cstat-no" title="statement not covered" >"@/components/form-message";</span>
-import { SubmitButton } from <span class="cstat-no" title="statement not covered" >"@/components/submit-button";</span>
-import { Label } from <span class="cstat-no" title="statement not covered" >"@/components/ui/label";</span>
-import Link from <span class="cstat-no" title="statement not covered" >"next/link";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { signInAction } from "@/app/actions";
+import { FormMessage, Message } from "@/components/form-message";
+import { SubmitButton } from "@/components/submit-button";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
 &nbsp;
-export default async function <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Login(p</span></span>rops: { searchParams: Promise&lt;Message&gt; }) {
-  const searchParams = <span class="cstat-no" title="statement not covered" >await props.searchParams;</span>
+export default async function Login(props: { searchParams: Promise&lt;Message&gt; }) {
+  const searchParams = await props.searchParams;
   return (
     &lt;div className="flex flex-col items-center justify-center min-h-screen font-trip-main relative"&gt;
       &lt;div className="bg-trip-brown-200 rounded-xl p-8 shadow-lg w-125"&gt;
@@ -250,7 +250,7 @@ export default async function <span class="cstat-no" title="statement not covere
         rel="noopener noreferrer"
         >istanbul</a
       >
-      at 2025-05-29T20:43:29.110Z
+      at 2025-06-05T03:02:12.772Z
     </div>
     <script src="../../../prettify.js"></script>
     <script>

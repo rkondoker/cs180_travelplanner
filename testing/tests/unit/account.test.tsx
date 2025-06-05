@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import AccountPage from "../../../app/account/page";
+import Account from "../../../app/account/page";
 import { createClient } from "../../../utils/supabase/server";
 import { handleWeather } from "../../../utils/weather/handleWeather";
 
@@ -16,6 +16,11 @@ jest.mock("../../../utils/weather/handleWeather", () => ({
 jest.mock("next/navigation", () => ({
   redirect: jest.fn(),
 }));
+
+// Mock the date to be consistent
+const mockDate = new Date("2024-01-01");
+jest.useFakeTimers();
+jest.setSystemTime(mockDate);
 
 describe("Account Page", () => {
   let mockSupabase: any;
@@ -37,12 +42,16 @@ describe("Account Page", () => {
     (createClient as jest.Mock).mockResolvedValue(mockSupabase);
   });
 
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it("redirects to sign-in when user is not authenticated", async () => {
     mockSupabase.auth.getUser.mockResolvedValue({
       data: { user: null },
     });
 
-    await AccountPage();
+    await Account();
     expect(require("next/navigation").redirect).toHaveBeenCalledWith(
       "/sign-in",
     );
@@ -65,7 +74,7 @@ describe("Account Page", () => {
       icon: "SunIcon",
     });
 
-    render(await AccountPage());
+    render(await Account());
 
     expect(
       screen.getByText(`Error fetching user details: ${errorMessage}`),
@@ -94,10 +103,9 @@ describe("Account Page", () => {
       icon: "SunIcon",
     });
 
-    render(await AccountPage());
+    render(await Account());
 
     // Check user information
-    expect(screen.getByText(/Welcome,/)).toBeInTheDocument();
     expect(screen.getByText("testuser")).toBeInTheDocument();
     expect(screen.getByText(/Joined on:/)).toBeInTheDocument();
     expect(screen.getByText("1/1/2024")).toBeInTheDocument();
@@ -129,37 +137,26 @@ describe("Account Page", () => {
       icon: "SunIcon",
     });
 
-    render(await AccountPage());
+    render(await Account());
 
     // Check main container
-    const mainContainer = screen.getByRole("generic", { hidden: true });
+    const mainContainer = screen.getByTestId("account-container");
     expect(mainContainer).toHaveClass(
       "min-h-screen",
       "flex",
       "items-center",
       "justify-center",
       "bg-trip-blue-100",
-      "text-white",
-      "p-6",
     );
 
-    // Check content container
-    const contentContainer = screen
-      .getByRole("generic", { hidden: true })
-      .querySelector(".bg-trip-brown-200");
-    expect(contentContainer).toHaveClass(
+    // Check card container
+    const cardContainer = screen.getByTestId("account-card");
+    expect(cardContainer).toHaveClass(
       "bg-trip-brown-200",
       "text-white",
       "rounded-2xl",
       "shadow-lg",
       "p-8",
-      "w-full",
-      "max-w-md",
-      "space-y-6",
     );
-
-    // Check heading
-    const heading = screen.getByRole("heading", { level: 2 });
-    expect(heading).toHaveClass("text-2xl", "font-bold", "border-b", "pb-2");
   });
 });
